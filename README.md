@@ -8,7 +8,7 @@ Check out the app [here](http://esriuk.com/mapstyler).
 ## Wishlist
 - Mobile friendliness
 - Modularisation (load in functionality via AMD modules)
-- Maintain state when switching between colour and image
+- Maintain state when switching between colour and image tabs
 - View your style history
 - User-created styles gallery
 - Colour tweaking on image tab
