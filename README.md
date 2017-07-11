@@ -1,7 +1,7 @@
 # mapstyler
 
 ## About
-mapstyler is an app to help you quickly style a vector basemap using either an image or a curated colour palette from [ColourLovers](http://www.colourlovers.com/). It was built using Esri's [dark gray canvas vector tile layer](https://www.arcgis.com/home/item.html?id=5ad3948260a147a993ef4865e3fad476), version 4 of the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript),[Color Thief](https://github.com/lokesh/color-thief) and [RainbowVis-JS](https://github.com/anomal/RainbowVis-JS).
+mapstyler is an app to help you quickly style a vector tile layer using either an image or a curated colour palette from [ColourLovers](http://www.colourlovers.com/). It was built using Esri's [dark gray canvas vector tile layer](https://www.arcgis.com/home/item.html?id=5ad3948260a147a993ef4865e3fad476), version 4 of the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript),[Color Thief](https://github.com/lokesh/color-thief) and [RainbowVis-JS](https://github.com/anomal/RainbowVis-JS).
 
 Check out the app [here](http://esriuk.com/mapstyler).
 
