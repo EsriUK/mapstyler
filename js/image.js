@@ -10,7 +10,7 @@ require([
 		var href		= document.location.href;
         var proxyUrl	= href.substr(0, href.indexOf('wmt') + 3) + "/proxy?";
 
-        //Define globals
+        //Define globals here
         var map = new Map();
         var run			= false;
         var colours		= [];
