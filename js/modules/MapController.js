@@ -12,6 +12,7 @@ define([
     
     //Builds the default map
     MapController.prototype.buildMap = function(){
+        var mapWait = $.Deferred();
         var item = "https://arcgis.com/sharing/rest/content/items/5ad3948260a147a993ef4865e3fad476";
         var map = new Map();
 
@@ -26,7 +27,11 @@ define([
             url: item + "/resources/styles/root.json"
         });
         
-		map.add(tileLyr);
+		map.add(tileLyr).then(function(){
+            mapWait.resolve();
+        });
+
+        return mapWait.promise();
     }
 
     //Takes a palette object and applies it to the map
