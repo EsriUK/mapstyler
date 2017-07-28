@@ -211,6 +211,7 @@ require([
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
+                    //Send user selected image to the prepareImage function
                     prepareImage(e.currentTarget.result)
                 }
                 reader.readAsDataURL(input.files[0]);
