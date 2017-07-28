@@ -206,6 +206,21 @@ require([
             }
         }
 
+        //Get image from manual upload or mobile input
+        function getImageUpload(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    prepareImage(e.currentTarget.result)
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        //When the upload button is engaged with, run the function to get the data
+        $("#upload").change(function(){
+            getImageUpload(this);
+        });
+
         //Fires when the shuffle button is hit. Shuffles the image-derived colour palette to apply colours to different map elements
         $("#shuffle").click(function () {
 			$('#save > img').attr("src","img/heart-shape-outline.svg");
@@ -231,5 +246,4 @@ require([
         //UI stuff
         $('.intro').show();
         $('canvas').hide();
-
     });
