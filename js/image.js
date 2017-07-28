@@ -9,7 +9,7 @@ require([
 		//Proxy information to avoid CORS issues with images dragged from other browser windows - you will need to change this	
 		var href		= document.location.href;
         var proxyUrl	= href.substr(0, href.indexOf('wmt') + 3) + "/proxy?";
-
+        
         //Define globals here
         var map = new Map();
         var run			= false;
