@@ -8,6 +8,7 @@ require([
 
         //Undo stuff
         var undoStack = []
+        var undoCount = 0;
 
 		//Proxy information to avoid CORS issues with images dragged from other browser windows - you will need to change this	
 		var href		= document.location.href;
@@ -49,11 +50,12 @@ require([
 
         //Function to prepare the image data for processing
 		function prepareImage(data) {
+            undoCount = 0;
 		    if (data.startsWith("data:image")) {
 		        var img = document.createElement('img');
 		        img.setAttribute("src", data);
 		        img.addEventListener('load', function () {
-		            processImage(img);
+		            processImage(img,false);
 		        });
 		    }
 		    else {
@@ -61,7 +63,7 @@ require([
 		    }
 		}
         //Function to get colours from the supplied image using ColorThief - https://github.com/lokesh/color-thief
-        function processImage(img) {
+        function processImage(img,isUndo) {
             //Update the canvas to display the image preview
             updateCanvas($(img).attr('src'));
             var colorThief = new ColorThief();
@@ -74,13 +76,10 @@ require([
             $("#shuffle").show();
             //Remove original layer
             map.remove(tileLyr);
+            if (isUndo == false){
+                undoStack.unshift(img)
+            }
             //Generate new style file
-            if (undoStack.length == 5){
-                undoStack[4] = img; 
-            }
-            else{
-                undoStack.push(img)
-            }
             newStyle = styleSwitch(colours);
             //Create new tile layer using new style and add to map            
             tileLyr = new VectorTileLayer({
@@ -269,10 +268,9 @@ require([
             }); 
         });   
 
-
         //Undo stack
          $("#undo").click(function () {
-            var i = undoStack.length;
-            processImage(undoStack[i-2])
+            undoCount++;
+            processImage(undoStack[undoCount],true)
         });   
     });
