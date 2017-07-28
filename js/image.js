@@ -6,6 +6,9 @@ require([
 ],
     function (Map, MapView, VectorTileLayer) {
 
+        //Undo stuff
+        var undoStack = []
+
 		//Proxy information to avoid CORS issues with images dragged from other browser windows - you will need to change this	
 		var href		= document.location.href;
         var proxyUrl	= ""//href.substr(0, href.indexOf('wmt') + 3) + "/proxy?";
@@ -51,7 +54,6 @@ require([
 		        img.setAttribute("src", data);
 		        img.addEventListener('load', function () {
 		            processImage(img);
-		            updateCanvas(data);
 		        });
 		    }
 		    else {
@@ -60,6 +62,8 @@ require([
 		}
         //Function to get colours from the supplied image using ColorThief - https://github.com/lokesh/color-thief
         function processImage(img) {
+            //Update the canvas to display the image preview
+            updateCanvas($(img).attr('src'));
             var colorThief = new ColorThief();
             //Request ColorThief to return a palette of five colours from the image that we can use to update the map's style
             var colorThiefColors = colorThief.getPalette(img, 5);
@@ -71,6 +75,12 @@ require([
             //Remove original layer
             map.remove(tileLyr);
             //Generate new style file
+            if (undoStack.length == 5){
+                undoStack[4] = img; 
+            }
+            else{
+                undoStack.push(img)
+            }
             newStyle = styleSwitch(colours);
             //Create new tile layer using new style and add to map            
             tileLyr = new VectorTileLayer({
@@ -257,5 +267,12 @@ require([
                         prepareImage(result)
                 });
             }); 
+        });   
+
+
+        //Undo stack
+         $("#undo").click(function () {
+            var i = undoStack.length;
+            processImage(undoStack[i-2])
         });   
     });
