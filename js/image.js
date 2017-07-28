@@ -8,8 +8,8 @@ require([
 
 		//Proxy information to avoid CORS issues with images dragged from other browser windows - you will need to change this	
 		var href		= document.location.href;
-        var proxyUrl	= href.substr(0, href.indexOf('wmt') + 3) + "/proxy?";
-        
+        var proxyUrl	= ""//href.substr(0, href.indexOf('wmt') + 3) + "/proxy?";
+
         //Define globals here
         var map = new Map();
         var run			= false;
@@ -192,8 +192,9 @@ require([
 
             } else {
                 var imagepath	= dataTransfer.getData('text/html');
+                console.log(imagepath)
                 var imagesrc	= $(imagepath).attr('src');
-                //If image is already in base64, sed straight to the prepareimage function...
+                //If image is already in base64, send straight to the prepareimage function...
 				if (imagesrc.startsWith("data")) {
                     prepareImage(imagesrc);
 				} else {
@@ -206,7 +207,7 @@ require([
             }
         }
 
-        //Get image from manual upload or mobile input
+        //Get image from manual upload or mobile input stuff
         function getImageUpload(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -247,4 +248,14 @@ require([
         //UI stuff
         $('.intro').show();
         $('canvas').hide();
+
+        //Random image stuff
+         $("#random").click(function () {
+                var url = "//source.unsplash.com/random";
+                $.get(url, function(data, status){
+                     toDataUrl(url, function (result) {
+                        prepareImage(result)
+                });
+            }); 
+        });   
     });
