@@ -6,6 +6,18 @@ body {
 	font-family: @font-family-base;
 	background: #b3d8c6;
 	-webkit-font-smoothing: antialiased;
+
+	@media @iphone6 {
+		background: red;
+	}
+
+	@media @iphone6plus {
+		background: blue;
+	}
+
+	@media @ipad {
+		background: orange;
+	}
 }
 
 .dialog {
