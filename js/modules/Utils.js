@@ -16,27 +16,32 @@ define(["modules/color-thief.min"], function() {
     }
 
     var imageToColours = function(image, numberOfColours){
+        var dfd = $.Deferred();
         if (image.startsWith("data:image")) {
+            
             var img = document.createElement('img');
             img.setAttribute("src", image);
-        img.addEventListener('load', function () {
+            img.addEventListener('load', function () {
                 //Update the canvas to display the image preview
-                updateCanvas($(img).attr('src'));
+                //updateCanvas($(img).attr('src'));
                 var colorThief = new ColorThief();
                 //Request ColorThief to return a palette of five colours from the image that we can use to update the map's style
                 var colorThiefColors = colorThief.getPalette(img, numberOfColours);
                 for (var colors in colorThiefColors) {
-                    colourThiefColors[colors] = rgbToHex(colorThiefColors[colors][0], colorThiefColors[colors][1], colorThiefColors[colors][2]);
+                    colorThiefColors[colors] = rgbToHex(colorThiefColors[colors][0], colorThiefColors[colors][1], colorThiefColors[colors][2]);
                 }
-                return colorThiefColors;
+                dfd.resolve(colorThiefColors);
             });
         }
         else {
             alert("Unsupported file type")
         }
+        return dfd.promise();
     }
 
     var updateCanvas = function (imagesrc) {
+        var canvas = document.getElementById("c");
+        var ctx	= canvas.getContext("2d");
         var image = new Image();
         image.onload = function () {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
