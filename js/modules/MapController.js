@@ -27,8 +27,10 @@ define([
             url: item + "/resources/styles/root.json"
         });
         
-		map.add(tileLyr).then(function(){
-            mapWait.resolve();
+		map.add(tileLyr);
+
+        tileLyr.on("layerview-create", function (evt) {
+			mapWait.resolve();
         });
 
         return mapWait.promise();

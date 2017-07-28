@@ -8,11 +8,19 @@
         var paletteCollection = new Array; //where 0 is the latest and the rest are for the undo stack
 
         function initialise(){
-            paletteCollection[0] = new Palette();
+            createRandomPalette();
             mapController.buildMap().done(function () { 
                 //mapController.applyPalette();
             });
-
         }
+
+        function createRandomPalette(){
+            var url = "//source.unsplash.com/random";
+            $.get(url, function(data, status){
+                paletteCollection.push(new Palette.Palette(url));
+            });
+        }
+
+        initialise();
         
     });
