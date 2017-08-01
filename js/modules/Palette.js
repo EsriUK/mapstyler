@@ -8,17 +8,15 @@ define(["modules/Utils"], function(Utils) {
 
     Palette.prototype.generateColours = function(image){
         var paletteWait = $.Deferred();
+        var that = this;
         this.image = image;
         Utils.imageToBase64(image, function (result) {
             Utils.imageToColours(result, 5).done(function(result){
-                paletteWait.resolve(result);
+                that.colours = result;
+                paletteWait.resolve();
             });
         });
         return paletteWait.promise();
-    }
-
-    Palette.prototype.setColours = function(colours){
-        this.colours = colours;
     }
 
     

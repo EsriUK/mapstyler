@@ -7,26 +7,32 @@
         var mapController = new MapController.MapController("viewDiv");
         var paletteCollection = new Array; //where 0 is the latest and the rest are for the undo stack
 
+        //Initialises the application on first load
+        //Builds a map and creates a palette from a random Unsplash image
         function initialise(){
             createRandomPalette().done(function(){
-                console.log(paletteCollection[0]);
                 mapController.buildMap().done(function () { 
-                    //mapController.applyPalette();
+                    mapController.applyPalette(getLatestPalette());
                 });
             });
         }
 
         function createRandomPalette(){
             var paletteWait = $.Deferred();
-            paletteCollection[0] = new Palette.Palette();
+            var myPalette = new Palette.Palette();
+            paletteCollection.push(myPalette);
             var url = "//source.unsplash.com/random";
             $.get(url, function(data, status){
-                paletteCollection[0].generateColours(url).done(function(result){
-                    paletteCollection[0].setColours(result);
+                paletteCollection[0].generateColours(url).done(function(){
+                    //paletteCollection[0].setColours(result);
                     paletteWait.resolve();
                 });             
             });
             return paletteWait.promise();
+        }
+
+        function getLatestPalette(){
+            return paletteCollection[0];
         }
 
         initialise();
