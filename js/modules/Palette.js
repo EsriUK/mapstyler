@@ -24,6 +24,10 @@ define(["modules/Utils"], function(Utils) {
     Palette.prototype.shuffleColours = function(oldPosition, newPosition){
     }
 
+    //ready for a function
+    Palette.prototype.updateColour = function(position, newColour){
+    }
+
     //Stuff to make public
     return {
         Palette: Palette

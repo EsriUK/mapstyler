@@ -3,9 +3,10 @@ define([
     "esri/views/MapView",
     "esri/layers/VectorTileLayer",
     "esri/views/layers/LayerView",
+    "esri/widgets/Search",
     "modules/Utils",
     "dojo/domReady!"
-], function(Map, MapView, VectorTileLayer, LayerView, Utils) {
+], function(Map, MapView, VectorTileLayer, LayerView, Search, Utils) {
 
     //Constructor for a new MapController
     var MapController = function (viewDiv){
@@ -19,15 +20,25 @@ define([
         var item = "https://arcgis.com/sharing/rest/content/items/5ad3948260a147a993ef4865e3fad476";
         this.map = new Map();
 
-        var view = new MapView({
+        this.view = new MapView({
             container: viewDiv,
             map: this.map,
             zoom: 13,
             center: [-0.010557, 51.495997]
         });
 
+        var searchWidget = new Search({
+            view: this.view
+        });
+
+        this.view.ui.add(searchWidget, {
+            position: "top-left",
+            index: 0
+        });
+
         var tileLyr = new VectorTileLayer({
-            url: item + "/resources/styles/root.json"
+            url: item + "/resources/styles/root.json",
+            opacity:0
         });
         
         this.map.add(tileLyr);
@@ -36,11 +47,8 @@ define([
             layerView = evt.layerView;
             //Set the original JSON style as a variable. We will need to revert to this each time we update the map's style
             that.originalStyle = JSON.stringify(layerView.layer.styleRepository.styleJSON);
-
             mapWait.resolve();
-            
         });
-
         return mapWait.promise();
     }
 
@@ -65,6 +73,13 @@ define([
             url: newStyle
         })
         this.map.add(tileLyr);
+    }
+
+    MapController.prototype.hideMap = function(){
+
+    }
+    MapController.prototype.showMap = function(){
+
     }
 
     //Stuff to make public

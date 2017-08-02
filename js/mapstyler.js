@@ -15,7 +15,7 @@
                     mapController.applyPalette(getLatestPalette());
                 });
             });
-        }
+        } 
 
         function createRandomPalette(){
             var paletteWait = $.Deferred();
