@@ -24,12 +24,15 @@
             var url = "//source.unsplash.com/random";
             $.get(url, function(data, status){
                 paletteCollection[0].generateColours(url).done(function(){
+                    
                     //paletteCollection[0].setColours(result);
                     paletteWait.resolve();
                 });             
             });
             return paletteWait.promise();
         }
+
+        
 
         function getLatestPalette(){
             return paletteCollection[0];

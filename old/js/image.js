@@ -5,7 +5,7 @@ require([
         "dojo/domReady!"
 ],
     function (Map, MapView, VectorTileLayer) {
-
+ 
         //Undo stuff
         var undoStack = []
         var undoCount = 0;
