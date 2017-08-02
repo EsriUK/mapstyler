@@ -12,6 +12,7 @@ Check out the app [here](http://esriuk.com/mapstyler).
 - View your style history
 - User-created styles gallery
 - Colour tweaking on image tab
+- Add hex code functionality to change the colours
 
 ## Issues
 
