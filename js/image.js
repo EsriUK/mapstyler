@@ -193,7 +193,7 @@ require([
             } else {
                 var imagepath	= dataTransfer.getData('text/html');
 		//Get the URL to the image using a regular expression (fixes issue on Macs if you try and use the jquery .attr method)
-                var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '" alt'))[1];
+                var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '"'))[1].split('"')[0];
                 //If image is already in base64, sed straight to the prepareimage function...
 				if (imagesrc.startsWith("data")) {
                     prepareImage(imagesrc);
