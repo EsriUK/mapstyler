@@ -71,6 +71,7 @@
             duplicateLatestPalette();
             getLatestPalette().shuffleColours();
             mapController.applyPalette(getLatestPalette());
+            updateSwatches(getLatestPalette());
         });
 
         //Logic ----------------------------------------------------------------------------------------
