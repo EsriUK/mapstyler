@@ -38,7 +38,7 @@ define([
 
         var tileLyr = new VectorTileLayer({
             url: item + "/resources/styles/root.json",
-            opacity:0
+            opacity:1
         });
         
         this.map.add(tileLyr);
@@ -68,11 +68,7 @@ define([
         }
         var newStyle = JSON.parse(style);
 
-        //Create new tile layer using new style and add to map            
-        tileLyr = new VectorTileLayer({
-            url: newStyle
-        })
-        this.map.add(tileLyr);
+        this.map.layers.items[0].loadStyle(newStyle)
     }
 
     MapController.prototype.hideMap = function(){
