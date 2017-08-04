@@ -8,7 +8,7 @@ body,
     background-color: rgba(11, 11, 12, 0.78);
 }
 .modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
