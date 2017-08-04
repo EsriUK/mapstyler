@@ -42,7 +42,6 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
         return dfd.promise();
     }
     
-
     var updateCanvas = function (imagesrc) {
         var canvas = document.getElementById("c");
         var ctx	= canvas.getContext("2d");

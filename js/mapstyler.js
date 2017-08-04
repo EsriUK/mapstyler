@@ -4,14 +4,15 @@
         "modules/Portal",
         "modules/Utils"
     ], function(MapController, Palette, Portal, Utils) {
+        //Session Variables-----------------------------------------------------------------------------
         var mapController = new MapController.MapController("viewDiv");
         var paletteCollection = new Array; //where 0 is the latest and the rest are for the undo stack
 
-        //Initialises the application on first load
-        //Builds a map and creates a palette from a random Unsplash image
+        //Functions  -----------------------------------------------------------------------------------
+
         function initialise(){
-            createRandomPalette().done(function(){
-                mapController.buildMap().done(function () { 
+            mapController.buildMap().done(function () {
+                createRandomPalette().done(function(){
                     mapController.applyPalette(getLatestPalette());
                 });
             });
@@ -23,21 +24,49 @@
             paletteCollection.push(myPalette);
             var url = "//source.unsplash.com/random";
             $.get(url, function(data, status){
-                paletteCollection[0].generateColours(url).done(function(){
-                    
-                    //paletteCollection[0].setColours(result);
+                getLatestPalette().generateColours(url).done(function(){
                     paletteWait.resolve();
                 });             
             });
             return paletteWait.promise();
         }
 
-        
+        function createPaletteFromImage(){
+            var paletteWait = $.Deferred();
+            var myPalette = new Palette.Palette();
+            paletteCollection.push(myPalette);
+            
+            getLatestPalette().generateColours(url).done(function(){
+                paletteWait.resolve();
+            });       
+                  
+            return paletteWait.promise();
+        }
 
         function getLatestPalette(){
             return paletteCollection[0];
         }
 
+        function createNewPalette(){
+            var myPalette = new Palette.Palette();
+            paletteCollection.push(myPalette);
+            //tbc
+        }
+
+        function duplicateLatestPalette(){
+            paletteCollection.push(paletteCollection[0]);
+        }
+
+        //Events ---------------------------------------------------------------------------------------
+        $("#shuffle").click(function(){
+            console.log("click");
+            duplicateLatestPalette();
+            getLatestPalette().shuffleColours();
+            mapController.applyPalette(getLatestPalette());
+        });
+
+        //Logic ----------------------------------------------------------------------------------------
+
         initialise();
-        
+
     });

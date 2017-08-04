@@ -21,7 +21,21 @@ define(["modules/Utils"], function(Utils) {
 
     
     //ready for a function
-    Palette.prototype.shuffleColours = function(oldPosition, newPosition){
+    Palette.prototype.moveColour = function(oldPosition, newPosition){
+    }
+
+    //radomises the order of the colours in the palette
+    Palette.prototype.shuffleColours = function(){
+        var that = this;
+        var currentIndex = that.colours.length,
+            temporaryValue, randomIndex;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = that.colours[currentIndex];
+            that.colours[currentIndex] = that.colours[randomIndex];
+            that.colours[randomIndex] = temporaryValue;
+        }
     }
 
     //ready for a function
