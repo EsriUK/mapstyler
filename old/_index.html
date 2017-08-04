@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mapstyler</title>
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.png" type="image/gif">
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+
+	<style>
+
+		.text h1 {
+			animation: inherit;
+		}
+
+		.background {
+			color: hsl(324, 70%, 45%);
+			animation: wheelHueColor 36s infinite;
+			background-color: currentColor;
+		}
+
+		@supports (background-blend-mode: overlay) {
+			.background {
+				background-image: linear-gradient(45deg, white 10%, black 90%);
+				background-blend-mode: overlay;
+			}
+		}
+
+		@keyframes wheelHueColor {
+			from, to { color: hsl(324, 70%, 45%); }
+			10%      { color: hsl(360, 65%, 45%); }
+			20%      { color: hsl( 36, 80%, 45%); }
+			30%      { color: hsl( 72, 75%, 35%); }
+			40%      { color: hsl(108, 65%, 35%); }
+			50%      { color: hsl(144, 75%, 35%); }
+			60%      { color: hsl(180, 75%, 35%); }
+			70%      { color: hsl(216, 60%, 45%); }
+			80%      { color: hsl(252, 65%, 50%); }
+			90%      { color: hsl(288, 60%, 40%); }
+		}
+
+		/* misc */
+		* { margin: 0; padding: 0; }
+		.background {
+			min-height: 100vh;
+			display: flex;
+		}
+
+		.text {
+			margin: auto;
+		}
+
+		.text h1 {
+			background: rgba(255,255,255,1);
+			padding: 1em 3em;
+			letter-spacing: 1px;
+		}
+
+		.text .grp {
+			float: left;
+			border: 1px solid #fff;
+			width: calc(100% - 2px);
+		}
+
+		.text .grp > div {
+			float: left;
+			width: 50%;
+			color: #fff;
+			text-align: center;
+		}
+
+		.text .grp > div:first-child {
+			width: calc(50% - 1px);
+			border-right: 1px solid #fff;
+		}
+
+		.text .grp > div > a {
+            color: #fff;
+            font-weight: 600;
+            display: block;
+            height: 100%;
+            padding: 16px 0;
+		}
+
+	</style>
+	
+</head>
+
+<body>
+
+	<div class="background">
+
+		<div class="text">
+			<h1>mapstyler</h1>
+
+			<div class="grp">
+				<div><a href="image.html">image</a></div>
+				<div><a href="color.html">colour</a></div>
+			</div>
+		
+		</div>
+	
+	</div>
+
+</body>
+
+</html>

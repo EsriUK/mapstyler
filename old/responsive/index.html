@@ -6,19 +6,8 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/map.css">
-
-    <script>
-        var dojoConfig = {
-            async: true,
-            isDebug: true,
-            paths: {
-                modules: location.href.replace(location.href.split("/").pop(), "") + "/js/modules"
-            }
-        };
-    </script>
-    <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="//js.arcgis.com/4.4/"></script>
-    <script src="js/mapstyler.js"></script>
+    <script src="https://js.arcgis.com/4.4/"></script>
+    <script src="main.js"></script>
 </head>
 
 <body>
@@ -45,7 +34,7 @@
                 </ul>
             </div>
             <div class="card-content">
-                <canvas id="c"></canvas>
+                <div class="canvas"></div>
             </div>
             <div class="card-swatches">
                 <div class="swatch"></div>
@@ -56,7 +45,7 @@
             </div>
             <div class="card-action">
                 <a href="#" class="btn">Save</a>
-                <a href="#" class="btn" id="shuffle">Shuffle</a>
+                <a href="#" class="btn">Shuffle</a>
                 <a href="#" class="btn">Upload</a>
             </div>
         </div>
