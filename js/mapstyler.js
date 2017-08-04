@@ -25,6 +25,7 @@
             var url = "//source.unsplash.com/random";
             $.get(url, function(data, status){
                 getLatestPalette().generateColours(url).done(function(){
+                    updateSwatches(getLatestPalette());
                     paletteWait.resolve();
                 });             
             });
@@ -37,6 +38,7 @@
             paletteCollection.push(myPalette);
             
             getLatestPalette().generateColours(url).done(function(){
+                updateSwatches(getLatestPalette());
                 paletteWait.resolve();
             });       
                   
@@ -57,9 +59,15 @@
             paletteCollection.push(paletteCollection[0]);
         }
 
+        function updateSwatches(palette){
+            for(colour in palette.colours){
+                var c = parseInt(colour)+1;
+                $(".swatch:nth-child(" + c + ")").css("background", palette.colours[colour]);
+            }
+        }
+
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
-            console.log("click");
             duplicateLatestPalette();
             getLatestPalette().shuffleColours();
             mapController.applyPalette(getLatestPalette());
