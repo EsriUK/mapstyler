@@ -70,6 +70,7 @@
         $("[id^='swatch']").spectrum({
             showInput: true,  
             preferredFormat: "hex",
+            chooseText: "Apply",
             change: function(color) {
                 $(this).css("background-color",  color.toHexString());
                 //Rich to apply new color to map
