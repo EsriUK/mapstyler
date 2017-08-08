@@ -73,6 +73,11 @@ hr {
 
 
 
+
+
+
+
+/*COLOUR PICKER*/
 .sp-container {
     background-color: #f4f4f4;
     border: solid 0px;
@@ -154,7 +159,13 @@ hr {
 
 
 
+/*extra bits*/
 
+.card-content {
+    background-image: url(../img/board.png);
+    background-size: 200px;
+    background-repeat: repeat;
+}
 
 
 
