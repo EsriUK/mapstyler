@@ -22,7 +22,8 @@
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
             paletteCollection.push(myPalette);
-            var url = "//source.unsplash.com/random";
+            //Unsplash Colours and Patterns collection
+            var url = "//source.unsplash.com/collection/175083/800x496";
             $.get(url, function(data, status){
                 getLatestPalette().generateColours(url).done(function(){
                     updateSwatches(getLatestPalette());
