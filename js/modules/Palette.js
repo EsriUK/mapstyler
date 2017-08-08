@@ -38,8 +38,10 @@ define(["modules/Utils"], function(Utils) {
         }
     }
 
-    //ready for a function
+    //updates an individual colour in a palette
     Palette.prototype.updateColour = function(position, newColour){
+        var that = this; 
+        that.colours[position] = newColour;
     }
 
     //Stuff to make public

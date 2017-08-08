@@ -73,7 +73,11 @@
             chooseText: "Apply",
             change: function(color) {
                 $(this).css("background-color",  color.toHexString());
-                //Rich to apply new color to map
+                duplicateLatestPalette();
+                //Ben - we need to know the swatch number here
+                //Currently set to  0 every time
+                getLatestPalette().updateColour(0,color.toHexString());
+                mapController.applyPalette(getLatestPalette());
             }
         });
      
