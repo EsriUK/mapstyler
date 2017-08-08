@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="//bgrins.github.io/spectrum/spectrum.css">
 
     <script>
         var dojoConfig = {
@@ -16,7 +17,9 @@
             }
         };
     </script>
+    
     <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="//bgrins.github.io/spectrum/spectrum.js"></script>
     <script src="//js.arcgis.com/4.4/"></script>
     <script src="js/mapstyler.js"></script>
 </head>
@@ -29,7 +32,7 @@
             <hr>
             <p>an app to quickly style vector tiles. Developed by Esri UK, <em><stong>mapstyler</stong></em> allows users to style Esri vector tiles using images. Users can tweak colours before hitting the save button, creating a new basemap in ArcGIS Online</p>
             <br>
-            <button onClick="document.getElementById('myModal').style.display='none';" class="go-button">Go style!</button>
+            <button onClick="document.getElementById('myModal').style.display='none';" class="go-button">Got it!</button>
         </div>
     </div>
     <div id="viewDiv"></div>
@@ -48,11 +51,11 @@
                 <canvas id="c"></canvas>
             </div>
             <div class="card-swatches">
-                <div class="swatch"></div>
-                <div class="swatch"></div>
-                <div class="swatch"></div>
-                <div class="swatch"></div>
-                <div class="swatch"></div>
+                <div id="swatch" class="swatch"></div>
+                <div id="swatch" class="swatch"></div>
+                <div id="swatch" class="swatch"></div>
+                <div id="swatch" class="swatch"></div>
+                <div id="swatch" class="swatch"></div>
             </div>
             <div class="card-action">
                 <a href="#" class="btn">Save</a>

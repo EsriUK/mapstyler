@@ -65,7 +65,17 @@
                 $(".swatch:nth-child(" + c + ")").css("background", palette.colours[colour]);
             }
         }
-
+        
+        //Ben edits - color picker
+        $("[id^='swatch']").spectrum({
+            showInput: true,  
+            preferredFormat: "hex",
+            change: function(color) {
+                $(this).css("background-color",  color.toHexString());
+                //Rich to apply new color to map
+            }
+        });
+     
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
             duplicateLatestPalette();
