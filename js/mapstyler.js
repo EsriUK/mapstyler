@@ -10,6 +10,7 @@
 
         //Functions  -----------------------------------------------------------------------------------
 
+        //Build the map and generate a palette from a random image
         function initialise(){
             mapController.buildMap().done(function () {
                 createRandomPalette().done(function(){
@@ -17,19 +18,21 @@
             });
         } 
 
+        //Creates a palette from a random image 
         function createRandomPalette(){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
             paletteCollection.push(myPalette);
             //Unsplash Colours and Patterns collection
-            //var url = "//source.unsplash.com/collection/175083/800x496";
-            var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
+            var url = "//source.unsplash.com/collection/175083/800x496";
+            //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
             $.get(url, function(data, status){
                 createPaletteFromImage(url)            
             });
             return paletteWait.promise();
         }
 
+        //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
@@ -44,20 +47,25 @@
             return paletteWait.promise();
         }
 
+        //returns the most recent palette in the collection
         function getLatestPalette(){
             return paletteCollection[0];
         }
 
+        //creates a new palette and puts it at the front of the collection
         function createNewPalette(){
             var myPalette = new Palette.Palette();
             paletteCollection.push(myPalette);
             //tbc
         }
 
+        //takes a copy of the most recent palette in the collection 
+        //this is the best way to make adjustments to a palette, whilst maintaining the undo/redo stack
         function duplicateLatestPalette(){
             paletteCollection.push(paletteCollection[0]);
         }
 
+        //Updates the colour swatches based on the palette you give it
         function updateSwatches(palette){
             for(colour in palette.colours){
                 var c = parseInt(colour)+1;
@@ -65,8 +73,7 @@
             }
         }
 
-
-
+        //sets up the swatch editing UI
         $("[id^='swatch']").spectrum({
             showInput: true,  
             showInitial: true,
@@ -82,11 +89,6 @@
             }
         });  
        
-        $("[id^='swatch']").click(function() {
-            $("[id^='swatch']").spectrum("set", $(this).css("background"));
-            $("[id^='swatch']").css("pointer-events", "none");
-        });
-     
         //Fires when an image is dropped onto the map or the info panel
         function imageReceived(e) {
             e.preventDefault();            
@@ -127,8 +129,12 @@
             getLatestPalette().shuffleColours();
             mapController.applyPalette(getLatestPalette());
             updateSwatches(getLatestPalette());
+        });
 
-            
+        //sets the colour in the swatch editor 
+        $("[id^='swatch']").click(function() {
+            $("[id^='swatch']").spectrum("set", $(this).css("background"));
+            $("[id^='swatch']").css("pointer-events", "none");
         });
 
         //When the upload button is engaged with, run the function to get the data
