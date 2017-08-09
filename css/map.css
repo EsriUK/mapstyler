@@ -156,7 +156,9 @@ hr {
     left: 0;
 }
 
-
+#c {
+    width: 100%;
+}
 
 
 /*extra bits*/
