@@ -67,8 +67,7 @@
             }
         }
         
-     
-        var currentColour = $(this).css("background-color");
+        var currentColour = $("[id^='swatch']").css("background");
      
         //Ben edits - color picker
         $("[id^='swatch']").spectrum({
@@ -78,13 +77,14 @@
             preferredFormat: "hex",
             chooseText: "Apply",
             change: function(color) {
-                $(this).css("background-color",  color.toHexString());
+                $(this).css("background",  color.toHexString());
                 duplicateLatestPalette();
                 //Ben - we need to know the swatch number here
                 //Currently set to  0 every time
                 getLatestPalette().updateColour(0,color.toHexString());
                 mapController.applyPalette(getLatestPalette());
             }
+            
         });
      
         //Events ---------------------------------------------------------------------------------------
