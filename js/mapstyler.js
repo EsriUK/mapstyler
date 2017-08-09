@@ -24,8 +24,8 @@
             var myPalette = new Palette.Palette();
             paletteCollection.push(myPalette);
             //Unsplash Colours and Patterns collection
-            //var url = "//source.unsplash.com/collection/175083/800x496";
-            var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
+            var url = "//source.unsplash.com/collection/175083/800x496";
+            //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
             $.get(url, function(data, status){
                 createPaletteFromImage(url)            
             });
