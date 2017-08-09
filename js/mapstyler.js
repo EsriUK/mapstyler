@@ -68,7 +68,10 @@
             }
         }
         
-       $("[id^='swatch']").spectrum({
+
+     
+    
+        $("[id^='swatch']").spectrum({
             showInput: true,  
             showInitial: true,
             preferredFormat: "hex",
@@ -78,14 +81,18 @@
                 duplicateLatestPalette();
                 getLatestPalette().updateColour(0,color.toHexString());
                 mapController.applyPalette(getLatestPalette());
-                $("#picker").spectrum("destroy");
+                $("[id^='swatch']").css("pointer-events", "auto");
             }
-        });
-     
+        });  
+       
         $("[id^='swatch']").click(function() {
             console.log(this);
             $("[id^='swatch']").spectrum("set", $(this).css("background"));
+            $("[id^='swatch']").css("pointer-events", "none");
         });
+     
+     
+     
      
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
