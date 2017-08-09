@@ -108,6 +108,18 @@
 				createPaletteFromImage(imagesrc)
             }
         }
+
+        //Get image from manual upload or mobile input stuff
+        function getImageUpload(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    createPaletteFromImage(e.currentTarget.result)
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
      
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
@@ -117,6 +129,11 @@
             updateSwatches(getLatestPalette());
 
             
+        });
+
+        //When the upload button is engaged with, run the function to get the data
+        $("#upload").change(function(){
+            getImageUpload(this);
         });
 
          //Wait for an image to be dropped on the lower right UI panel...
