@@ -13,7 +13,6 @@
         function initialise(){
             mapController.buildMap().done(function () {
                 createRandomPalette().done(function(){
-                    mapController.applyPalette(getLatestPalette());
                 });
             });
         } 
@@ -26,21 +25,19 @@
             //var url = "//source.unsplash.com/collection/175083/800x496";
             var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
             $.get(url, function(data, status){
-                getLatestPalette().generateColours(url).done(function(){
-                    updateSwatches(getLatestPalette());
-                    paletteWait.resolve();
-                });             
+                createPaletteFromImage(url)            
             });
             return paletteWait.promise();
         }
 
-        function createPaletteFromImage(){
+        function createPaletteFromImage(image){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
             paletteCollection.push(myPalette);
             
-            getLatestPalette().generateColours(url).done(function(){
+            getLatestPalette().generateColours(image).done(function(){
                 updateSwatches(getLatestPalette());
+                mapController.applyPalette(getLatestPalette());
                 paletteWait.resolve();
             });       
                   
@@ -68,6 +65,8 @@
             }
         }
 
+
+
         $("[id^='swatch']").spectrum({
             showInput: true,  
             showInitial: true,
@@ -88,8 +87,31 @@
             $("[id^='swatch']").css("pointer-events", "none");
         });
      
-     
-     
+        //Fires when an image is dropped onto the map or the info panel
+        function imageReceived(e) {
+
+            e.preventDefault();            
+            var dataTransfer	= e.originalEvent.dataTransfer;
+            var reader			= new FileReader();
+            if (dataTransfer && dataTransfer.files.length) {
+                
+				e.stopPropagation();
+                //Using a for loop, but we will only ever have a single file
+				$.each(dataTransfer.files, function (i, file) {
+                    var reader = new FileReader();
+                    reader.onload = $.proxy(function (file, $fileList, event) {
+                        createPaletteFromImage(event.target.result)
+                    }, this, file, $("#fileList"));
+                    reader.readAsDataURL(file);
+                });
+
+            } else {
+                var imagepath	= dataTransfer.getData('text/html');
+                var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '"'))[1].split('"')[0];
+				createPaletteFromImage(imagesrc)
+
+            }
+        }
      
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
@@ -97,7 +119,32 @@
             getLatestPalette().shuffleColours();
             mapController.applyPalette(getLatestPalette());
             updateSwatches(getLatestPalette());
+
+            
         });
+
+         //Wait for an image to be dropped on the lower right UI panel...
+        $('.card').on({
+            'dragover dragenter': function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            },
+            'drop': function (e) {
+                imageReceived(e);
+            }
+        });
+        //...or the map itself
+        $('#viewDiv').on({
+            'dragover dragenter': function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            },
+            'drop': function (e) {
+                imageReceived(e);
+            }
+        });
+
+        
 
         //Logic ----------------------------------------------------------------------------------------
 
