@@ -79,7 +79,8 @@
             change: function(color) {
                 $(this).css("background",  color.toHexString());
                 duplicateLatestPalette();
-                getLatestPalette().updateColour(0,color.toHexString());
+                var id = this.id.substring(7, 8);
+                getLatestPalette().updateColour(id,color.toHexString());
                 mapController.applyPalette(getLatestPalette());
                 $("[id^='swatch']").css("pointer-events", "auto");
             }
