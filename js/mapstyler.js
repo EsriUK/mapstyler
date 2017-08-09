@@ -67,10 +67,7 @@
                 $(".swatch:nth-child(" + c + ")").css("background", palette.colours[colour]);
             }
         }
-        
 
-     
-    
         $("[id^='swatch']").spectrum({
             showInput: true,  
             showInitial: true,
@@ -80,14 +77,13 @@
                 $(this).css("background",  color.toHexString());
                 duplicateLatestPalette();
                 var id = this.id.substring(7, 8);
-                getLatestPalette().updateColour(id,color.toHexString());
+                getLatestPalette().updateColour(id-1,color.toHexString());
                 mapController.applyPalette(getLatestPalette());
                 $("[id^='swatch']").css("pointer-events", "auto");
             }
         });  
        
         $("[id^='swatch']").click(function() {
-            console.log(this);
             $("[id^='swatch']").spectrum("set", $(this).css("background"));
             $("[id^='swatch']").css("pointer-events", "none");
         });
