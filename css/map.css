@@ -167,7 +167,9 @@ hr {
     background-repeat: repeat;
 }
 
-
+.swatch {
+    cursor: pointer;
+}
 
 
 

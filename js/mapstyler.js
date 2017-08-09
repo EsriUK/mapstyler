@@ -68,11 +68,7 @@
             }
         }
         
-        var currentColour = $("[id^='swatch']").css("background");
-     
-        //Ben edits - color picker
-        $("[id^='swatch']").spectrum({
-            color: currentColour,
+       $("[id^='swatch']").spectrum({
             showInput: true,  
             showInitial: true,
             preferredFormat: "hex",
@@ -80,12 +76,15 @@
             change: function(color) {
                 $(this).css("background",  color.toHexString());
                 duplicateLatestPalette();
-                //Ben - we need to know the swatch number here
-                //Currently set to  0 every time
                 getLatestPalette().updateColour(0,color.toHexString());
                 mapController.applyPalette(getLatestPalette());
+                $("#picker").spectrum("destroy");
             }
-            
+        });
+     
+        $("[id^='swatch']").click(function() {
+            console.log(this);
+            $("[id^='swatch']").spectrum("set", $(this).css("background"));
         });
      
         //Events ---------------------------------------------------------------------------------------
