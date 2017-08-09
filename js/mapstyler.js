@@ -67,9 +67,14 @@
             }
         }
         
+     
+        var currentColour = $(this).css("background-color");
+     
         //Ben edits - color picker
         $("[id^='swatch']").spectrum({
+            color: currentColour,
             showInput: true,  
+            showInitial: true,
             preferredFormat: "hex",
             chooseText: "Apply",
             change: function(color) {

@@ -145,10 +145,10 @@ hr {
     height: 1px;
 }
 .sp-dragger {
-    border-radius: 5px;
+    border-radius: 6px;
     height: 9px;
     width: 9px;
-    border: 1px solid #444;
+    border: 2px solid #444;
     background: rgba(0, 0, 0, 0);
     cursor: pointer;
     position: absolute;
