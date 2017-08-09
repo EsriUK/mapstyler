@@ -89,12 +89,10 @@
      
         //Fires when an image is dropped onto the map or the info panel
         function imageReceived(e) {
-
             e.preventDefault();            
             var dataTransfer	= e.originalEvent.dataTransfer;
             var reader			= new FileReader();
-            if (dataTransfer && dataTransfer.files.length) {
-                
+            if (dataTransfer && dataTransfer.files.length) {      
 				e.stopPropagation();
                 //Using a for loop, but we will only ever have a single file
 				$.each(dataTransfer.files, function (i, file) {
@@ -104,12 +102,10 @@
                     }, this, file, $("#fileList"));
                     reader.readAsDataURL(file);
                 });
-
             } else {
                 var imagepath	= dataTransfer.getData('text/html');
                 var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '"'))[1].split('"')[0];
 				createPaletteFromImage(imagesrc)
-
             }
         }
      

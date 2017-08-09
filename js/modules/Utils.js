@@ -57,7 +57,7 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
             }
             offset = 0;
             if (newWidth < 300) {
-                offset = canvas.width - newWidth;
+                offset = (canvas.width - newWidth) / 2;
             }
             ctx.drawImage(image, offset, 0, newWidth, newHeight);
         };
