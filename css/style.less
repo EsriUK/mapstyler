@@ -6,18 +6,6 @@ body {
 	font-family: @font-family-base;
 	background: #b3d8c6;
 	-webkit-font-smoothing: antialiased;
-
-	@media @iphone6 {
-		background: red;
-	}
-
-	@media @iphone6plus {
-		background: blue;
-	}
-
-	@media @ipad {
-		background: orange;
-	}
 }
 
 .dialog {
@@ -26,16 +14,28 @@ body {
 	bottom: @padding-base-vertical;
 	right: @padding-base-horizontal;
 
-	@media @mobile {
+	@media @mobile-landscape {
 		bottom: @padding-mobile-vertical;
 		right: @padding-mobile-horizontal;
 		left: @padding-mobile-horizontal;
 	}
 
-	@media @tablet {
-		bottom: @padding-tablet-vertical;
-		right: @padding-tablet-horizontal;
-		top: @padding-tablet-vertical;
+	@media @mobile-portrait {
+		bottom: @padding-mobile-vertical;
+		right: @padding-mobile-horizontal;
+		left: @padding-mobile-horizontal;
+	}
+
+	@media @tablet-landscape {
+		position: absolute;
+		bottom: @padding-base-vertical;
+		right: @padding-base-horizontal;
+	}
+
+	@media @tablet-portrait {
+		position: absolute;
+		bottom: @padding-base-vertical;
+		right: @padding-base-horizontal;
 	}
 
 	.card {
@@ -70,13 +70,25 @@ body {
 
 		}
 
-		@media @mobile {
+		@media @mobile-landscape {
 			border-radius: @border-radius-mobile;
 			width: @card-width-mobile;
 			height: @card-height-mobile;
 		}
 
-		@media @tablet {
+		@media @mobile-portrait {
+			border-radius: @border-radius-mobile;
+			width: @card-width-mobile;
+			height: @card-height-mobile;
+		}
+
+		@media @tablet-landscape {
+			border-radius: @border-radius-mobile;
+			width: @card-width-mobile;
+			height: @card-height-mobile;
+		}
+
+		@media @tablet-portrait {
 			border-radius: @border-radius-tablet;
 			width: @card-width-tablet;
 			height: @card-height-tablet;
@@ -140,6 +152,17 @@ body {
 
 					}
 
+					&.random {
+
+						a {
+							width: 24px;
+							height: 24px;
+							display: block;
+							background-position: 0 -120px;
+						}
+
+					}
+
 					&.help {
 
 						padding-right: 12px;
@@ -165,12 +188,22 @@ body {
 			border-radius: 0 0 @border-radius-base @border-radius-base;
 			height: @card-content-height-base;
 
-			@media @mobile {
+			@media @mobile-landscape {
 				border-radius: @border-radius-mobile;
 				height: @card-content-height-mobile;
 			}
 
-			@media @tablet {
+			@media @mobile-portrait {
+				border-radius: @border-radius-mobile;
+				height: @card-content-height-mobile;
+			}
+
+			@media @tablet-portrait {
+				border-radius: @border-radius-mobile;
+				height: @card-content-height-mobile;
+			}
+
+			@media @tablet-landscape {
 				border-radius: @border-radius-tablet;
 				height: @card-content-height-tablet;
 			}
@@ -184,13 +217,21 @@ body {
 				top: 0;
 				z-index: 0;
 
-				@media @mobile {
+				@media @mobile-landscape {
 					height: @card-content-height-mobile;
 				}
 
-				@media @tablet {
-					height: @card-content-height-tablet;
+				@media @mobile-portrait {
+					height: @card-content-height-mobile;
 				}
+
+				@media @tablet-portrait {
+					height: @card-content-height-mobile;
+				}
+
+				@media @tablet-landscape {
+					height: @card-content-height-tablet;
+				}				
 
 			}
 
@@ -223,7 +264,7 @@ body {
 			table-layout: fixed;
 			text-align: center;
 
-			@media @tablet {
+			@media @tablet-landscape {
 				border-bottom: 1px solid #ccc;
 			}
 

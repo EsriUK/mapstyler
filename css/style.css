@@ -4,38 +4,37 @@ body {
   background: #b3d8c6;
   -webkit-font-smoothing: antialiased;
 }
-@media only screen and (min-width: 375px) and (max-width: 667px) {
-  body {
-    background: red;
-  }
-}
-@media only screen and (min-width: 414px) and (max-width: 736px) {
-  body {
-    background: blue;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  body {
-    background: orange;
-  }
-}
 .dialog {
   position: absolute;
   bottom: 36px;
   right: 20px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
   .dialog {
     bottom: 0px;
     right: 0px;
     left: 0px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
   .dialog {
     bottom: 0px;
     right: 0px;
-    top: 0px;
+    left: 0px;
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .dialog {
+    position: absolute;
+    bottom: 36px;
+    right: 20px;
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .dialog {
+    position: absolute;
+    bottom: 36px;
+    right: 20px;
   }
 }
 .dialog .card {
@@ -64,14 +63,28 @@ body {
   top: 0;
   opacity: 0;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
   .dialog .card {
     border-radius: 0px;
     width: 100%;
     height: 260px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
+  .dialog .card {
+    border-radius: 0px;
+    width: 100%;
+    height: 260px;
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .dialog .card {
+    border-radius: 0px;
+    width: 100%;
+    height: 260px;
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1) {
   .dialog .card {
     border-radius: 0px;
     width: 280px;
@@ -119,6 +132,12 @@ body {
 .dialog .card .card-primary ul li.redo a.disabled {
   background-position: 0 -72px;
 }
+.dialog .card .card-primary ul li.random a {
+  width: 24px;
+  height: 24px;
+  display: block;
+  background-position: 0 -120px;
+}
 .dialog .card .card-primary ul li.help {
   padding-right: 12px;
 }
@@ -134,13 +153,25 @@ body {
   border-radius: 0 0 0px 0px;
   height: calc(248px);
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
   .dialog .card .card-content {
     border-radius: 0px;
     height: calc(100px);
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
+  .dialog .card .card-content {
+    border-radius: 0px;
+    height: calc(100px);
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .dialog .card .card-content {
+    border-radius: 0px;
+    height: calc(100px);
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) {
   .dialog .card .card-content {
     border-radius: 0px;
     height: calc(232px);
@@ -154,12 +185,22 @@ body {
   top: 0;
   z-index: 0;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
   .dialog .card .card-content canvas {
     height: calc(100px);
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
+  .dialog .card .card-content canvas {
+    height: calc(100px);
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .dialog .card .card-content canvas {
+    height: calc(100px);
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) {
   .dialog .card .card-content canvas {
     height: calc(232px);
   }
@@ -197,7 +238,7 @@ body {
   table-layout: fixed;
   text-align: center;
 }
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) {
   .dialog .card .card-action {
     border-bottom: 1px solid #ccc;
   }
