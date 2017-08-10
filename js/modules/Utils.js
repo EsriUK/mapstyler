@@ -54,7 +54,7 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
             if (newHeight > canvas.height) {
                 newHeight = canvas.height;
                 newWidth = newHeight * wrh;
-            }
+            } 
             offset = 0;
             if (newWidth < 300) {
                 offset = (canvas.width/2) - (newWidth/2);
