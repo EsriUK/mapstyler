@@ -147,7 +147,6 @@ body {
   }
 }
 .dialog .card .card-content canvas {
-  width: 100%;
   height: calc(248px);
   position: absolute;
   left: 0;
