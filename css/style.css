@@ -130,9 +130,9 @@ body {
 }
 .dialog .card .card-content {
   position: relative;
-  padding: 24px;
+  padding: 0;
   border-radius: 0 0 0px 0px;
-  height: calc(200px);
+  height: calc(248px);
 }
 @media only screen and (max-width: 768px) {
   .dialog .card .card-content {
@@ -146,11 +146,8 @@ body {
     height: calc(232px);
   }
 }
-.dialog .card .card-content .canvas {
+.dialog .card .card-content canvas {
   width: 100%;
-  background: url('../img/canvas-placeholder-base.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   height: calc(248px);
   position: absolute;
   left: 0;
@@ -158,14 +155,13 @@ body {
   z-index: 0;
 }
 @media only screen and (max-width: 768px) {
-  .dialog .card .card-content .canvas {
-    height: calc(148px);
+  .dialog .card .card-content canvas {
+    height: calc(100px);
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-  .dialog .card .card-content .canvas {
-    height: calc(280px);
-    background: url('../img/canvas-placeholder-tablet.png');
+  .dialog .card .card-content canvas {
+    height: calc(232px);
   }
 }
 .dialog .card .card-swatches {

@@ -16,17 +16,33 @@ body,
     height: 100%;
     overflow: hidden;
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.69);
+    background-color: rgba(0, 0, 0, 0.75);
 }
 .modal-content {
     background-color: #fefefe;
     font-family: 'Montserrat', sans-serif;
-    margin: 15% auto;
-    padding: 20px;
-    border: 0px solid #888;
-    max-width: 30%;
-    color: #303d4c;
+    margin: 12% auto;
+    padding: 40px;
+    max-width: 26%;
+	text-align: center;
+	position: relative;
 }
+.modal-content img {
+	max-width: 140px;
+	margin: 20px 0;
+}
+
+.modal-content p {
+	line-height: 1.6;
+	color: #303d4c;
+    font-size: 15px;
+}
+
+.modal-content p.footnote {
+	color: #8d99a7;
+	font-size: 13px;
+}
+
 h1 {
     font-weight: 600;
     margin: 0;
@@ -47,6 +63,27 @@ hr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     margin-top: 15px;
 }
+
+.close {
+	position: absolute;
+    top: 7px;
+    right: 15px;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 30px;
+	background: none;
+	border: none;
+	color: #bbb;
+	cursor: pointer;
+}
+
+.close:hover {
+}
+
 .go-button {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -56,17 +93,16 @@ hr {
     font-weight: 500;
     font-size: 14px;
     color: #303d4c;
-    font-size: 16px;
-    background: #ffffff;
-    padding: 5px 10px 5px 10px;
-    border: solid #303d4c 2px;
+    background: #91eb7e;
+    padding: 12px 32px;
+    border: solid #91eb7e 1px;
     text-decoration: none;
+	cursor: pointer;
 }
 .go-button:hover {
-    background: #303d4c;
+    background: #80d674;
     text-decoration: none;
-    color: #ffffff;
-    border-color: #303d4c;
+    border-color: #80d674;
 }
 
 
@@ -155,11 +191,6 @@ hr {
     top: 0;
     left: 0;
 }
-
-#c {
-    width: 100%;
-}
-
 
 /*extra bits*/
 

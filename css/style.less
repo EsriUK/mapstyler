@@ -161,7 +161,7 @@ body {
 		.card-content {
 
 			position: relative;
-			padding: @card-padding;
+			padding: 0;
 			border-radius: 0 0 @border-radius-base @border-radius-base;
 			height: @card-content-height-base;
 
@@ -175,12 +175,9 @@ body {
 				height: @card-content-height-tablet;
 			}
 
-			.canvas {
+			canvas {
 
 				width: 100%;
-				background: url('../img/canvas-placeholder-base.png');
-				background-size: cover;
-				background-repeat: no-repeat;
 				height: @canvas-height-base;
 				position: absolute;
 				left: 0;
@@ -188,12 +185,11 @@ body {
 				z-index: 0;
 
 				@media @mobile {
-					height: @canvas-height-mobile;
+					height: @card-content-height-mobile;
 				}
 
 				@media @tablet {
-					height: @canvas-height-tablet;
-					background: url('../img/canvas-placeholder-tablet.png');
+					height: @card-content-height-tablet;
 				}
 
 			}

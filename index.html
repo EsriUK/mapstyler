@@ -26,14 +26,20 @@
 
 <body>
     <div id="myModal" class="modal">
+
         <div class="modal-content">
-            <h1>mapstyler</h1>
-            <h2><em>English map-<strong>styler</strong></em> | noun</h2>
-            <hr>
-            <p>an app to quickly style vector tiles. Developed by Esri UK, <em><stong>mapstyler</stong></em> allows users to style Esri vector tiles using images. Users can tweak colours before hitting the save button, creating a new basemap in ArcGIS Online</p>
-            <br>
+
+			<button onClick="document.getElementById('myModal').style.display='none';" class="close">&times;</button>
+
+			<img src="img/logo.svg"/>
+
+            <p>An app to quickly style vector tiles.</p>
+			
+			<p class="footnote">Developed by Esri UK, <em><stong>mapstyler</stong></em> allows users to style Esri vector tiles using images. Users can tweak colours before hitting the save button, creating a new basemap in ArcGIS Online</p>
+            
             <button onClick="document.getElementById('myModal').style.display='none';" class="go-button">Got it!</button>
-        </div>
+        
+		</div>
     </div>
     <div id="viewDiv"></div>
     <div class="dialog">
