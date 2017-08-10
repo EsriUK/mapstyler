@@ -131,6 +131,10 @@
             updateSwatches(getLatestPalette());
         });
 
+        $(".random").click(function(){
+            createRandomPalette();
+        });
+
         //sets the colour in the swatch editor 
         $("[id^='swatch']").click(function() {
             $("[id^='swatch']").spectrum("set", $(this).css("background"));
