@@ -49,6 +49,27 @@ body {
 		.box-shadow(@shadow);
 		border-radius: @border-radius-base;
 
+		.upload-btn-wrapper {
+			
+			position: relative;
+			overflow: hidden;
+
+			.btn {
+				border: none;
+				background-color: @card-bg;
+				font-family: @font-family-base;
+			}
+
+			input[type=file] {
+				font-size: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0;
+			}
+
+		}
+
 		@media @mobile {
 			border-radius: @border-radius-mobile;
 			width: @card-width-mobile;
@@ -62,6 +83,7 @@ body {
 		}
 
 		.card-primary {
+
 			position: relative;
 			min-height: @card-primary-height-base;
 
