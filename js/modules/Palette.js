@@ -17,6 +17,7 @@ define(["modules/Utils"], function(Utils) {
             });
         } else {
             Utils.imageToBase64(image, function(result) {
+                that.image = result;
                 Utils.imageToColours(result, 5).done(function(result) {
                     that.colours = result;
                     paletteWait.resolve();

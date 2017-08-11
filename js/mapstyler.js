@@ -6,7 +6,9 @@
     ], function(MapController, Palette, Portal, Utils) {
         //Session Variables-----------------------------------------------------------------------------
         var mapController = new MapController.MapController("viewDiv");
-        var paletteCollection = new Array; //where 0 is the latest and the rest are for the undo stack
+        var paletteCollection = new Object; 
+        paletteCollection.palettes = new Array; //where 0 is the latest and the rest are for the undo stack
+        paletteCollection.current = 0;
 
         //Functions  -----------------------------------------------------------------------------------
 
@@ -22,7 +24,7 @@
         function createRandomPalette(){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
-            paletteCollection.push(myPalette);
+            paletteCollection.palettes.unshift(myPalette);
             //Unsplash Colours and Patterns collection
             var url = "//source.unsplash.com/collection/175083/400x248";
             //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
@@ -36,7 +38,7 @@
         function createPaletteFromImage(image){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
-            paletteCollection.push(myPalette);
+            paletteCollection.palettes.unshift(myPalette);
             
             getLatestPalette().generateColours(image).done(function(){
                 updateSwatches(getLatestPalette());
@@ -49,20 +51,25 @@
 
         //returns the most recent palette in the collection
         function getLatestPalette(){
-            return paletteCollection[0];
+            return paletteCollection.palettes[0];
+        }
+
+        //returns where we are for the undo redo stack
+        function getPalettePosition(){
+            return paletteCollection.current;
         }
 
         //creates a new palette and puts it at the front of the collection
         function createNewPalette(){
             var myPalette = new Palette.Palette();
-            paletteCollection.push(myPalette);
+            paletteCollection.unshift(myPalette);
             //tbc
         }
 
         //takes a copy of the most recent palette in the collection 
         //this is the best way to make adjustments to a palette, whilst maintaining the undo/redo stack
         function duplicateLatestPalette(){
-            paletteCollection.push(paletteCollection[0]);
+            paletteCollection.palettes.unshift(paletteCollection.palettes[0]);
         }
 
         //Updates the colour swatches based on the palette you give it
@@ -144,6 +151,14 @@
         //When the upload button is engaged with, run the function to get the data
         $("#upload").change(function(){
             getImageUpload(this);
+        });
+        //When the upload button is engaged with, run the function to get the data
+        $("#undo").click(function(){
+            var currentPosition
+            updateSwatches(getPalettePosition());
+            mapController.applyPalette(paletteCollection.palettes);
+            console.log(paletteCollection.palettes)
+            console.log(getPalettePosition())
         });
 
          //Wait for an image to be dropped on the lower right UI panel...
