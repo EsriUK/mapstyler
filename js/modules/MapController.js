@@ -67,8 +67,9 @@ define([
             style = Utils.stringReplace(style, '"line-color":"' + array[i] + '"', '"line-color":"' + palette.colours[2] + '"');
         }
         var newStyle = JSON.parse(style);
+        palette.storeStyle(style);
 
-        this.map.layers.items[0].loadStyle(newStyle)
+        this.map.layers.items[0].loadStyle(newStyle);
     }
 
     MapController.prototype.hideMap = function(){

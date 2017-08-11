@@ -51,6 +51,11 @@ define(["modules/Utils"], function(Utils) {
         that.colours[position] = newColour;
     }
 
+    //store the new style in the palette
+    Palette.prototype.storeStyle = function(style){
+        this.style = style;
+    }
+
     //Stuff to make public
     return {
         Palette: Palette

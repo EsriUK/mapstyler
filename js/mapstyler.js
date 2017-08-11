@@ -65,8 +65,8 @@
         //this is the best way to make adjustments to a palette, whilst maintaining the undo/redo stack
         function duplicateLatestPalette(){
             paletteCollection.palettes.unshift(new Palette.Palette());
-            paletteCollection.palettes[0].colours = paletteCollection[1].colours;
-            paletteCollection.palettes[0].image = paletteCollection[1].image;
+            paletteCollection.palettes[0].colours = paletteCollection.palettes[1].colours;
+            paletteCollection.palettes[0].image = paletteCollection.palettes[1].image;
 
         }
 
