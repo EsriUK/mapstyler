@@ -152,7 +152,6 @@
         //Undo stuff
         $("#undo").click(function(){
             updateSwatches(paletteCollection.palettes[1]);
-            console.log(paletteCollection.palettes)
             mapController.applyPalette(paletteCollection.palettes[1]);
             var img = document.createElement('img');
             img.setAttribute("src", paletteCollection.palettes[1].image);
@@ -160,14 +159,12 @@
                 Utils.updateCanvas($(img).attr('src'));
             });
             paletteCollection.palettes.push(paletteCollection.palettes.shift());
-
         });
 
         //Redo stuff
         $("#redo").click(function(){
             paletteCollection.palettes.unshift(paletteCollection.palettes.pop());
             updateSwatches(paletteCollection.palettes[0]);
-            console.log(paletteCollection.palettes)
             mapController.applyPalette(paletteCollection.palettes[0]);
             var img = document.createElement('img');
             img.setAttribute("src", paletteCollection.palettes[0].image);
