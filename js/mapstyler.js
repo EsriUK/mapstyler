@@ -196,6 +196,13 @@
             }
         });
 
+        $('#save').click(function () {
+            Portal.saveMap(getLatestPalette().style);
+            //$('#save > img').hide();
+            //$('.sk-circle').show();
+            
+        });
+
         
 
         //Logic ----------------------------------------------------------------------------------------
