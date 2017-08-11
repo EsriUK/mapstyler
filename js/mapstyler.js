@@ -8,7 +8,7 @@
         var mapController = new MapController.MapController("viewDiv");
         var paletteCollection = new Object; 
         paletteCollection.palettes = new Array; //where 0 is the latest and the rest are for the undo stack
-        paletteCollection.current = 0;
+        paletteCollection.firstLoad = true;
 
         //Functions  -----------------------------------------------------------------------------------
 
@@ -16,25 +16,37 @@
         function initialise(){
             mapController.buildMap().done(function () {
                 createRandomPalette().done(function(){
+                    
                 });
             });
         } 
 
         //Creates a palette from a random image 
         function createRandomPalette(){
+            disableInteraction()
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
             //Unsplash Colours and Patterns collection
             var url = "//source.unsplash.com/collection/175083/400x248";
             //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
             $.get(url, function(data, status){
-                createPaletteFromImage(url)            
+                createPaletteFromImage(url).done(function(){
+                    enableInteraction()
+                    if(paletteCollection.firstLoad == true){
+                        paletteCollection.firstLoad = false;
+                    }
+                    else{
+                        $("#undo").attr('class', 'btn');
+                        $("#redo").attr('class', 'btn disabled');
+                    }
+                })            
             });
             return paletteWait.promise();
         }
 
         //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
+            disableInteraction()
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
             paletteCollection.palettes.unshift(myPalette);
@@ -77,6 +89,16 @@
             }
         }
 
+        //function to stop the user breaking the app
+        function disableInteraction(){
+            $("body").css("pointer-events", "none");
+        }
+
+        //function to stop the user breaking the app
+        function enableInteraction(){
+            $("body").removeAttr("style");
+        }
+
         //sets up the swatch editing UI
         $("[id^='swatch']").spectrum({
             showInput: true,  
@@ -105,8 +127,14 @@
                     var reader = new FileReader();
                     reader.onload = $.proxy(function (file, $fileList, event) {
                         createPaletteFromImage(event.target.result).done(function(){
-                            $("#undo").attr('class', 'btn');
-                            $("#redo").attr('class', 'btn disabled');
+                            enableInteraction()
+                    if(paletteCollection.firstLoad == true){
+                        paletteCollection.firstLoad = false;
+                    }
+                    else{
+                        $("#undo").attr('class', 'btn');
+                        $("#redo").attr('class', 'btn disabled');
+                    }
                         })
                     }, this, file, $("#fileList"));
                     reader.readAsDataURL(file);
@@ -124,8 +152,14 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     createPaletteFromImage(e.currentTarget.result).done(function(){
+                        enableInteraction()
+                    if(paletteCollection.firstLoad == true){
+                        paletteCollection.firstLoad = false;
+                    }
+                    else{
                         $("#undo").attr('class', 'btn');
                         $("#redo").attr('class', 'btn disabled');
+                    }
                     })
                 }
                 reader.readAsDataURL(input.files[0]);
@@ -135,18 +169,25 @@
      
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
+            disableInteraction()
             duplicateLatestPalette();
             getLatestPalette().shuffleColours();
+            //paletteCollection.palettes.unshift(getLatestPalette());
             mapController.applyPalette(getLatestPalette());
             updateSwatches(getLatestPalette());
+            enableInteraction()
+            if(paletteCollection.firstLoad == true){
+                paletteCollection.firstLoad = false;
+            }
+            else{
+                $("#undo").attr('class', 'btn');
+                $("#redo").attr('class', 'btn disabled');
+            }
+            
         });
 
         $(".random").click(function(){
-            createRandomPalette().done(function(){
-                $("#undo").attr('class', 'btn');
-                $("#redo").attr('class', 'btn disabled');
-            });
-            
+            createRandomPalette()
         });
 
         //sets the colour in the swatch editor 
