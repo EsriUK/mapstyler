@@ -78,7 +78,6 @@
             paletteCollection.palettes.unshift(new Palette.Palette());
             paletteCollection.palettes[0].colours = paletteCollection.palettes[1].colours;
             paletteCollection.palettes[0].image = paletteCollection.palettes[1].image;
-
         }
 
         //Updates the colour swatches based on the palette you give it
@@ -172,7 +171,6 @@
             disableInteraction()
             duplicateLatestPalette();
             getLatestPalette().shuffleColours();
-            //paletteCollection.palettes.unshift(getLatestPalette());
             mapController.applyPalette(getLatestPalette());
             updateSwatches(getLatestPalette());
             enableInteraction()
