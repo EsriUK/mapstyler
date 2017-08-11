@@ -115,7 +115,8 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
         rgbToHex: rgbToHex,
         stringReplace: stringReplace,
         getColourRamp: getColourRamp,
-        getBaseColourArray: getBaseColourArray
+        getBaseColourArray: getBaseColourArray,
+        updateCanvas: updateCanvas
     };
 
 });

@@ -24,7 +24,6 @@
         function createRandomPalette(){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
-            //paletteCollection.palettes.unshift(myPalette);
             //Unsplash Colours and Patterns collection
             var url = "//source.unsplash.com/collection/175083/400x248";
             //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
@@ -157,8 +156,14 @@
             console.log(paletteCollection.palettes[currentPosition+1])
             var currentPosition = paletteCollection.current;
             paletteCollection.current = currentPosition +1;
-            updateSwatches(paletteCollection.palettes[currentPosition+1].colours);
+            updateSwatches(paletteCollection.palettes[currentPosition+1]);
             mapController.applyPalette(paletteCollection.palettes[currentPosition+1]);
+            var img = document.createElement('img');
+            img.setAttribute("src", paletteCollection.palettes[currentPosition+1].image);
+            img.addEventListener('load', function () {
+                //Update the canvas to display the image preview
+                Utils.updateCanvas($(img).attr('src'));
+            });
         });
 
          //Wait for an image to be dropped on the lower right UI panel...
