@@ -24,7 +24,7 @@
         function createRandomPalette(){
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
-            paletteCollection.palettes.unshift(myPalette);
+            //paletteCollection.palettes.unshift(myPalette);
             //Unsplash Colours and Patterns collection
             var url = "//source.unsplash.com/collection/175083/400x248";
             //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
@@ -52,11 +52,6 @@
         //returns the most recent palette in the collection
         function getLatestPalette(){
             return paletteCollection.palettes[0];
-        }
-
-        //returns where we are for the undo redo stack
-        function getPalettePosition(){
-            return paletteCollection.current;
         }
 
         //creates a new palette and puts it at the front of the collection
@@ -157,8 +152,12 @@
         });
         //When the upload button is engaged with, run the function to get the data
         $("#undo").click(function(){
-            var currentPosition = getPalettePosition()
-            updateSwatches(currentPosition+1);
+            var currentPosition = paletteCollection.current;
+            console.log(paletteCollection.palettes)
+            console.log(paletteCollection.palettes[currentPosition+1])
+            var currentPosition = paletteCollection.current;
+            paletteCollection.current = currentPosition +1;
+            updateSwatches(paletteCollection.palettes[currentPosition+1].colours);
             mapController.applyPalette(paletteCollection.palettes[currentPosition+1]);
         });
 
