@@ -104,7 +104,10 @@
 				$.each(dataTransfer.files, function (i, file) {
                     var reader = new FileReader();
                     reader.onload = $.proxy(function (file, $fileList, event) {
-                        createPaletteFromImage(event.target.result)
+                        createPaletteFromImage(event.target.result).done(function(){
+                            $("#undo").attr('class', 'btn');
+                            $("#redo").attr('class', 'btn disabled');
+                        })
                     }, this, file, $("#fileList"));
                     reader.readAsDataURL(file);
                 });
@@ -120,7 +123,10 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    createPaletteFromImage(e.currentTarget.result)
+                    createPaletteFromImage(e.currentTarget.result).done(function(){
+                        $("#undo").attr('class', 'btn');
+                        $("#redo").attr('class', 'btn disabled');
+                    })
                 }
                 reader.readAsDataURL(input.files[0]);
             }
@@ -136,7 +142,11 @@
         });
 
         $(".random").click(function(){
-            createRandomPalette();
+            createRandomPalette().done(function(){
+                $("#undo").attr('class', 'btn');
+                $("#redo").attr('class', 'btn disabled');
+            });
+            
         });
 
         //sets the colour in the swatch editor 
@@ -151,6 +161,7 @@
         });
         //Undo stuff
         $("#undo").click(function(){
+            $("#redo").attr('class', 'btn');
             updateSwatches(paletteCollection.palettes[1]);
             mapController.applyPalette(paletteCollection.palettes[1]);
             var img = document.createElement('img');
