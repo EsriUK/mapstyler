@@ -62,7 +62,10 @@
         //takes a copy of the most recent palette in the collection 
         //this is the best way to make adjustments to a palette, whilst maintaining the undo/redo stack
         function duplicateLatestPalette(){
-            paletteCollection.push(paletteCollection[0]);
+            paletteCollection.unshift(new Palette.Palette());
+            paletteCollection[0].colours = paletteCollection[1].colours;
+            paletteCollection[0].image = paletteCollection[1].image;
+
         }
 
         //Updates the colour swatches based on the palette you give it
