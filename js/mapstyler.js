@@ -62,7 +62,7 @@
         //creates a new palette and puts it at the front of the collection
         function createNewPalette(){
             var myPalette = new Palette.Palette();
-            paletteCollection.unshift(myPalette);
+            paletteCollection.palettes.unshift(myPalette);
             //tbc
         }
 
@@ -71,7 +71,7 @@
         function duplicateLatestPalette(){
             paletteCollection.palettes.unshift(new Palette.Palette());
             paletteCollection.palettes[0].colours = paletteCollection[1].colours;
-            paletteCollection,palettes[0].image = paletteCollection[1].image;
+            paletteCollection.palettes[0].image = paletteCollection[1].image;
 
         }
 
@@ -157,11 +157,9 @@
         });
         //When the upload button is engaged with, run the function to get the data
         $("#undo").click(function(){
-            var currentPosition
-            updateSwatches(getPalettePosition());
-            mapController.applyPalette(paletteCollection.palettes);
-            console.log(paletteCollection.palettes)
-            console.log(getPalettePosition())
+            var currentPosition = getPalettePosition()
+            updateSwatches(currentPosition+1);
+            mapController.applyPalette(paletteCollection.palettes[currentPosition+1]);
         });
 
          //Wait for an image to be dropped on the lower right UI panel...
