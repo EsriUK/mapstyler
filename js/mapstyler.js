@@ -152,16 +152,25 @@
         //When the upload button is engaged with, run the function to get the data
         $("#undo").click(function(){
             var currentPosition = paletteCollection.current;
-            console.log(paletteCollection.palettes)
-            console.log(paletteCollection.palettes[currentPosition+1])
-            var currentPosition = paletteCollection.current;
             paletteCollection.current = currentPosition +1;
             updateSwatches(paletteCollection.palettes[currentPosition+1]);
             mapController.applyPalette(paletteCollection.palettes[currentPosition+1]);
             var img = document.createElement('img');
             img.setAttribute("src", paletteCollection.palettes[currentPosition+1].image);
             img.addEventListener('load', function () {
-                //Update the canvas to display the image preview
+                Utils.updateCanvas($(img).attr('src'));
+            });
+        });
+
+        //When the upload button is engaged with, run the function to get the data
+        $("#redo").click(function(){
+            var currentPosition = paletteCollection.current;
+            paletteCollection.current = currentPosition -1;
+            updateSwatches(paletteCollection.palettes[currentPosition-1]);
+            mapController.applyPalette(paletteCollection.palettes[currentPosition-1]);
+            var img = document.createElement('img');
+            img.setAttribute("src", paletteCollection.palettes[currentPosition-1].image);
+            img.addEventListener('load', function () {
                 Utils.updateCanvas($(img).attr('src'));
             });
         });
