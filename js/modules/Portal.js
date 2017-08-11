@@ -64,15 +64,7 @@ define([
 				}
 			);
         }
-
-        $('#signout').on("click", function () {
-            esriId.destroyCredentials();
-            window.location.reload();
-        });
-
-        $('#save').click(function () {
-            //$('#save > img').hide();
-            //$('.sk-circle').show();
+        var saveMap = function(style){
             portal.authMode = "immediate";
             portal.load().then(function () {
                 //$('#signout').show();
@@ -84,8 +76,20 @@ define([
                 var minutes = time.getMinutes();
                 var seconds = time.getSeconds();
                 var itemName = date1 + "-" + month + "-" + year + " " + hour + ":" + minutes + ":" + seconds;
-                addItem(newStyle, itemName);
+                addItem(JSON.parse(style), itemName);
             });
+        }
+
+        $('#signout').on("click", function () {
+            esriId.destroyCredentials();
+            window.location.reload();
         });
+
+        //Stuff to make public
+        return {
+            saveMap: saveMap
+        };
+
+        
     });
 
