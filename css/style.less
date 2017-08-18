@@ -28,19 +28,10 @@ body {
 		bottom: @padding-mobile-vertical;
 		right: @padding-mobile-horizontal;
 		left: @padding-mobile-horizontal;
+		font-size: @font-size-large;
 	}
 
-	@media @tablet-landscape {
-		position: absolute;
-		bottom: @padding-base-vertical;
-		right: @padding-base-horizontal;
-	}
 
-	@media @tablet-portrait {
-		position: absolute;
-		bottom: @padding-base-vertical;
-		right: @padding-base-horizontal;
-	}
 
 	.card {
 
@@ -85,18 +76,7 @@ body {
 			border-radius: @border-radius-mobile;
 			width: @card-width-mobile;
 			height: @card-height-mobile;
-		}
-
-		@media @tablet-landscape {
-			border-radius: @border-radius-mobile;
-			width: @card-width-mobile;
-			height: @card-height-mobile;
-		}
-
-		@media @tablet-portrait {
-			border-radius: @border-radius-tablet;
-			width: @card-width-tablet;
-			height: @card-height-tablet;
+			font-size: @font-size-large;
 		}
 
 		.card-primary {
@@ -205,42 +185,10 @@ body {
 			@media @mobile-portrait {
 				border-radius: @border-radius-mobile;
 				height: @card-content-height-mobile;
+				font-size: @font-size-large;
 			}
 
-			@media @tablet-portrait {
-				border-radius: @border-radius-mobile;
-				height: @card-content-height-mobile;
-			}
 
-			@media @tablet-landscape {
-				border-radius: @border-radius-tablet;
-				height: @card-content-height-tablet;
-			}
-
-			canvas {
-
-				height: @canvas-height-base;
-				width: @canvas-width-base;
-				position: absolute;
-				z-index: 0;
-
-				@media @mobile-landscape {
-					height: @card-content-height-mobile;
-				}
-
-				@media @mobile-portrait {
-					height: @card-content-height-mobile;
-				}
-
-				@media @tablet-portrait {
-					height: @card-content-height-mobile;
-				}
-
-				@media @tablet-landscape {
-					height: @card-content-height-tablet;
-				}				
-
-			}
 
 		}
 
@@ -252,7 +200,6 @@ body {
 			.swatch {
 				display: table-cell;
 				height: @swatch-height-base;
-
 				&:nth-child(1) { background: #f4f4f4; }
 				&:nth-child(2) { background: #f4f4f4; }
 				&:nth-child(3) { background: #f4f4f4; }
@@ -271,9 +218,7 @@ body {
 			table-layout: fixed;
 			text-align: center;
 
-			@media @tablet-landscape {
-				border-bottom: 1px solid #ccc;
-			}
+
 
 			a {
 				display: table-cell;
@@ -286,7 +231,6 @@ body {
 					pointer-events: none;
 					//cursor: default;
 				}
-	
 			}
 		}
 
@@ -296,6 +240,10 @@ body {
 			font-weight: 500;
 			text-decoration: none;
 			color: #303d4c;
+
+			@media @mobile-portrait {
+				font-size: @font-size-large;
+			}
 		}
 	}
 }
