@@ -253,6 +253,9 @@ body {
 .dialog .card .card-action a:not(:last-child) {
   border-right: 1px solid #ccc;
 }
+.dialog .card .card-action a.disabled {
+  pointer-events: none;
+}
 .dialog .card .btn {
   font-size: 14px;
   text-transform: uppercase;

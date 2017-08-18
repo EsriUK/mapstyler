@@ -17,9 +17,7 @@ define([
         esriId.registerOAuthInfos([info]);
 
         function addItem(json, itemName) {
-            console.log(json.version);
-            console.log(portal);
-
+            var deferred = $.Deferred();
             var urlKey = portal.urlKey;
             var user = portal.user.username;
 
@@ -51,10 +49,7 @@ define([
 				        responseType: "json"
 				    }).then(
 						function (response) {
-						    $('#save > img').attr("src", "img/heart-shape-filled.svg");
-						    $('.sk-circle').hide();
-						    $('#save > img').show();
-						    
+                            deferred.resolve();
 						}, function (error) {
 						    console.log(error);
 						}
@@ -62,9 +57,11 @@ define([
 				}, function (error) {
 				    console.log(error);
 				}
-			);
+            );
+            return deferred.promise();
         }
         var saveMap = function(style){
+            var deferred = $.Deferred();
             portal.authMode = "immediate";
             portal.load().then(function () {
                 //$('#signout').show();
@@ -76,8 +73,11 @@ define([
                 var minutes = time.getMinutes();
                 var seconds = time.getSeconds();
                 var itemName = date1 + "-" + month + "-" + year + " " + hour + ":" + minutes + ":" + seconds;
-                addItem(JSON.parse(style), itemName);
+                addItem(JSON.parse(style), itemName).done(function(){
+                    deferred.resolve();
+                });
             });
+            return deferred.promise();
         }
 
         $('#signout').on("click", function () {
