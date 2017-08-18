@@ -109,6 +109,13 @@
         //takes a copy of the most recent palette in the collection 
         //this is the best way to make adjustments to a palette, whilst maintaining the undo/redo stack
         function duplicateLatestPalette(){
+            if(paletteCollection.firstLoad == true){
+                paletteCollection.firstLoad = false;
+            }
+            else{
+                $("#undo").attr('class', 'btn');
+                $("#redo").attr('class', 'btn disabled');
+            }
             if (paletteCollection.palettes.length == paletteCollection.history){
                 paletteCollection.palettes.pop();
             }
@@ -221,15 +228,7 @@
             //console.log(paletteCollection);
             mapController.applyPalette(getLatestPalette());
             updateSwatches(getLatestPalette());
-            enableInteraction()
-            if(paletteCollection.firstLoad == true){
-                paletteCollection.firstLoad = false;
-            }
-            else{
-                $("#undo").attr('class', 'btn');
-                $("#redo").attr('class', 'btn disabled');
-            }
-            
+            enableInteraction()            
         });
 
         $(".random").click(function(){
