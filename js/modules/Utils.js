@@ -44,20 +44,24 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
     
     var updateCanvas = function (imagesrc) {
         var canvas = document.getElementById("c");
+        var cardContent = document.getElementsByClassName("card-content")[0];
+        canvas.width = cardContent.clientWidth;
+        canvas.height = cardContent.clientHeight;
+        console.log(cardContent)
         var ctx	= canvas.getContext("2d");
         var image = new Image();
         image.onload = function () {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, cardContent.clientWidth, cardContent.clientHeight);
             var wrh = image.width / image.height;
-            var newWidth = canvas.width;
+            var newWidth = cardContent.clientWidth;
             var newHeight = newWidth / wrh;
-            if (newHeight > canvas.height) {
-                newHeight = canvas.height;
+            if (newHeight > cardContent.clientHeight) {
+                newHeight = cardContent.clientHeight;
                 newWidth = newHeight * wrh;
             } 
             offset = 0;
-            if (newWidth < canvas.width) {
-                offset = (canvas.width/2) - (newWidth/2);
+            if (newWidth < cardContent.clientWidth) {
+                offset = (cardContent.clientWidth/2) - (newWidth/2);
             }
             if (newWidth > newHeight){
                 //newWidth = newWidth+96;
