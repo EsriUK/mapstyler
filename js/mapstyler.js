@@ -151,9 +151,9 @@
                 $("[id^='swatch']").css("pointer-events", "auto");
             },
             hide: function(color) {
-                var id = this.id.substring(7, 8);
-                getLatestPalette().updateColour(id-1,color.toHexString());
-                mapController.applyPalette(getLatestPalette());
+                //var id = this.id.substring(7, 8);
+                //getLatestPalette().updateColour(id-1,color.toHexString());
+                //mapController.applyPalette(getLatestPalette());
                 $("[id^='swatch']").css("pointer-events", "auto");
             }
         });  
