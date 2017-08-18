@@ -21,7 +21,7 @@ body {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
   .dialog {
-    bottom: 0px;
+    bottom: 75px;
     right: 0px;
     left: 0px;
     font-size: 21px;
