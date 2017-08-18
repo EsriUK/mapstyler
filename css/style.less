@@ -5,7 +5,7 @@
 
 
 
-.esri-search {
+.esri-widget {
     @media @mobile-landscape {
 		display: none;
 	}
@@ -30,6 +30,12 @@ body {
 	position: absolute;
 	bottom: @padding-base-vertical;
 	right: @padding-base-horizontal;
+
+	@media @mobile-portrait {
+		height: @dialog-mobile-height;
+		width: 100%;	
+		right: 0px;	
+	}
 
 	.card {
 
@@ -65,14 +71,24 @@ body {
 		}
 
 		@media @mobile-landscape {
-			width: 300px;		
+			width: 20em;		
 		}
+		@media @mobile-portrait {
+			height: 100%;
+			width: 100%;		
+		}
+
 
 
 		.card-primary {
 
 			position: relative;
 			min-height: @card-primary-height-base;
+
+			@media @mobile-portrait {
+				height: 5%;	
+				min-height: 5%;
+			}	
 
 			ul {
 				
@@ -184,7 +200,13 @@ body {
 			padding: 0;
 			border-radius: 0 0 @border-radius-base @border-radius-base;
 			height: @card-content-height-base;
+
+			@media @mobile-portrait {
+				height: 75%;	
+			}
 		}
+
+
 
 		.card-swatches {
 			width: 100%;
@@ -207,6 +229,7 @@ body {
 
 			@media @mobile-portrait {
 				pointer-events: none;
+				height: 10%;
 			}
 		}
 
@@ -220,7 +243,9 @@ body {
 			table-layout: fixed;
 			text-align: center;
 
-
+			@media @mobile-portrait {
+				height: 15%;	
+			}
 
 			a {
 				display: table-cell;

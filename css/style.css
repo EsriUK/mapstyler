@@ -1,11 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .esri-search {
+  .esri-widget {
     display: none;
   }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .esri-search {
+  .esri-widget {
     display: none;
   }
 }
@@ -21,6 +21,13 @@ body {
   position: absolute;
   bottom: 36px;
   right: 20px;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
+  .dialog {
+    height: 50%;
+    width: 100%;
+    right: 0px;
+  }
 }
 .dialog .card {
   position: relative;
@@ -51,12 +58,24 @@ body {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   .dialog .card {
-    width: 300px;
+    width: 20em;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
+  .dialog .card {
+    height: 100%;
+    width: 100%;
   }
 }
 .dialog .card .card-primary {
   position: relative;
   min-height: 40px;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
+  .dialog .card .card-primary {
+    height: 5%;
+    min-height: 5%;
+  }
 }
 .dialog .card .card-primary ul {
   float: left;
@@ -140,6 +159,11 @@ body {
   border-radius: 0 0 0px 0px;
   height: calc(248px);
 }
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
+  .dialog .card .card-content {
+    height: 75%;
+  }
+}
 .dialog .card .card-swatches {
   width: 100%;
   display: table;
@@ -172,6 +196,7 @@ body {
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
   .dialog .card .card-swatches {
     pointer-events: none;
+    height: 10%;
   }
 }
 .dialog .card .card-action {
@@ -182,6 +207,11 @@ body {
   display: table;
   table-layout: fixed;
   text-align: center;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
+  .dialog .card .card-action {
+    height: 15%;
+  }
 }
 .dialog .card .card-action a {
   display: table-cell;
