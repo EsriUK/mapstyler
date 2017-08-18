@@ -50,13 +50,9 @@
             $("a#save").attr('class', 'btn')  
             $('a#save').text('SAVE');                            
             paletteCollection.undoPosition = 1;
-            //duplicateLatestPalette();
-            var palette = new Palette.Palette();
-            //we need to do toString to break the referernce back to the original values
-            var c = getLatestPalette().colours.toString();
-            palette.colours = c.split(',');
-            palette.style = getLatestPalette().style;
-            palette.image = getLatestPalette().image;
+            duplicateLatestPalette();
+            var palette = getLatestPalette();
+    
             //shuffle
             var currentIndex = palette.colours.length,
             temporaryValue, randomIndex;
@@ -67,7 +63,6 @@
                 palette.colours[currentIndex] = palette.colours[randomIndex];
                 palette.colours[randomIndex] = temporaryValue;
             }
-            paletteCollection.palettes.unshift(palette);
         }
 
         //Creates a palette from an image and applies it to the map
@@ -113,9 +108,15 @@
                 paletteCollection.palettes.pop();
             }
             paletteCollection.palettes.unshift(new Palette.Palette());
-            paletteCollection.palettes[0].colours = paletteCollection.palettes[1].colours;
-            paletteCollection.palettes[0].image = paletteCollection.palettes[1].image;
-            paletteCollection.palettes[0].style = paletteCollection.palettes[1].style;
+
+            //We have to use .toString here to break the referernce to the original data
+            var c = paletteCollection.palettes[1].colours.toString();
+            var i = paletteCollection.palettes[1].image.toString();
+            var s = paletteCollection.palettes[1].style.toString();
+
+            paletteCollection.palettes[0].colours = c.split(',');
+            paletteCollection.palettes[0].image = i.split(',');
+            paletteCollection.palettes[0].style = s.split(',');
         }
 
         //Updates the colour swatches based on the palette you give it
