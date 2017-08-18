@@ -2,6 +2,19 @@
 @import "variables.less";
 @import "mixins.less";
 
+
+
+
+.esri-search {
+    @media @mobile-landscape {
+		display: none;
+	}
+	
+	@media @mobile-portrait {
+		display: none;		
+	}
+}
+
 .sp-initial{
 	display: none;
 }
@@ -30,9 +43,6 @@ body {
 		left: @padding-mobile-horizontal;
 		font-size: @font-size-large;
 	}
-
-
-
 
 	.card {
 
@@ -206,6 +216,14 @@ body {
 				&:nth-child(3) { background: #f4f4f4; }
 				&:nth-child(4) { background: #f4f4f4; }
 				&:nth-child(5) { background: #f4f4f4; }
+			}
+
+			@media @mobile-landscape {
+				pointer-events: none;
+			}
+
+			@media @mobile-portrait {
+				pointer-events: none;
 			}
 		}
 

@@ -1,4 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .esri-search {
+    display: none;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .esri-search {
+    display: none;
+  }
+}
 .sp-initial {
   display: none;
 }
@@ -24,7 +34,7 @@ body {
     bottom: 50px;
     right: 0px;
     left: 0px;
-    font-size: 21px;
+    font-size: 28px;
   }
 }
 .dialog .card {
@@ -66,7 +76,7 @@ body {
     border-radius: 0px;
     width: 100%;
     height: 300px;
-    font-size: 21px;
+    font-size: 28px;
   }
 }
 .dialog .card .card-primary {
@@ -133,7 +143,7 @@ body {
   position: relative;
   padding: 0;
   border-radius: 0 0 0px 0px;
-  height: calc(248px);
+  height: calc(268px);
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
   .dialog .card .card-content {
@@ -145,7 +155,7 @@ body {
   .dialog .card .card-content {
     border-radius: 0px;
     height: calc(188px);
-    font-size: 21px;
+    font-size: 28px;
   }
 }
 .dialog .card .card-swatches {
@@ -171,6 +181,16 @@ body {
 }
 .dialog .card .card-swatches .swatch:nth-child(5) {
   background: #f4f4f4;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .dialog .card .card-swatches {
+    pointer-events: none;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .dialog .card .card-swatches {
+    pointer-events: none;
+  }
 }
 .dialog .card .card-action {
   position: relative;
@@ -200,6 +220,6 @@ body {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
   .dialog .card .btn {
-    font-size: 21px;
+    font-size: 28px;
   }
 }
