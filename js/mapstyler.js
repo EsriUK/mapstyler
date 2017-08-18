@@ -31,7 +31,7 @@
             //Unsplash Colours and Patterns collection
             var url = "//source.unsplash.com/collection/175083/400x248";
             //var url = "//lh3.googleusercontent.com/SO4jvgiZlVezRvc9yIoVy-kYL6xmMzPdsKycymYzGr5nZBheBwJKUY24pgfI_lCG28a_-ec934E=w640-h400-e365";
-            $.get(url, function(data, status){
+            $.get(url).done(function(data){
                 createPaletteFromImage(url).done(function(){
                     enableInteraction()
                     if(paletteCollection.firstLoad == true){
@@ -42,6 +42,19 @@
                         $("#redo").attr('class', 'btn disabled');
                     }
                 })            
+            }).fail(function(){
+                $(".random").css('display', 'none');
+                var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
+                createPaletteFromImage(url).done(function(){
+                    enableInteraction()
+                    if(paletteCollection.firstLoad == true){
+                        paletteCollection.firstLoad = false;
+                    }
+                    else{
+                        $("#undo").attr('class', 'btn');
+                        $("#redo").attr('class', 'btn disabled');
+                    }
+                }) 
             });
             return paletteWait.promise();
         }
