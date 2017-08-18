@@ -57,6 +57,7 @@ define([
         var array = Utils.getBaseColourArray();
         var style = this.originalStyle;
         var dict = Utils.getColourRamp(palette.colours[0], palette.colours[1]);
+         document.body.style.background = palette.colours[0];
 
         for (var i = 0; i <= array.length; i++) {
             style = Utils.stringReplace(style, '"background-color":"' + array[i] + '"', '"background-color":"' + dict[array[i]] + '"')
