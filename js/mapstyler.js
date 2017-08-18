@@ -47,6 +47,8 @@
         }
 
         function createShuffledPalette(){
+            $("a#save").attr('class', 'btn')  
+            $('a#save').text('SAVE');                            
             paletteCollection.undoPosition = 1;
             //duplicateLatestPalette();
             var palette = new Palette.Palette();
@@ -70,6 +72,8 @@
 
         //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
+            $("a#save").attr('class', 'btn')  
+            $('a#save').text('SAVE');                                        
             paletteCollection.undoPosition = 1;
             disableInteraction()
             var paletteWait = $.Deferred();
@@ -304,7 +308,11 @@
         });
 
         $('#save').click(function () {
-            Portal.saveMap(getLatestPalette().style);
+            $('a#save').text('SAVING');   
+            $("a#save").attr('class', 'btn disabled')         
+            Portal.saveMap(getLatestPalette().style).done(function(){
+                $('a#save').text('SAVED!');                
+            });
             //$('#save > img').hide();
             //$('.sk-circle').show();
             
