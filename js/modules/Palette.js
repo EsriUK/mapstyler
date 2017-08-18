@@ -33,16 +33,17 @@ define(["modules/Utils"], function(Utils) {
 
     //radomises the order of the colours in the palette
     Palette.prototype.shuffleColours = function(){
-        var that = this;
-        var currentIndex = that.colours.length,
+        var currentIndex = this.colours.length,
             temporaryValue, randomIndex;
         while (0 !== currentIndex) {
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
-            temporaryValue = that.colours[currentIndex];
-            that.colours[currentIndex] = that.colours[randomIndex];
-            that.colours[randomIndex] = temporaryValue;
+            temporaryValue = this.colours[currentIndex];
+            this.colours[currentIndex] = this.colours[randomIndex];
+            this.colours[randomIndex] = temporaryValue;
         }
+        this.colours = Math.random();
+        console.log(this);
     }
 
     //updates an individual colour in a palette

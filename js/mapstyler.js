@@ -44,6 +44,25 @@
             return paletteWait.promise();
         }
 
+        function createShuffledPalette(){
+            //duplicateLatestPalette();
+            var palette = new Palette.Palette();
+            palette.colours = getLatestPalette().colours;
+            palette.style = getLatestPalette().style;
+            palette.image = getLatestPalette().image;
+            //shuffle
+            var currentIndex = palette.colours.length,
+            temporaryValue, randomIndex;
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = palette.colours[currentIndex];
+                palette.colours[currentIndex] = palette.colours[randomIndex];
+                palette.colours[randomIndex] = temporaryValue;
+            }
+            paletteCollection.palettes.unshift(palette);
+        }
+
         //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
             disableInteraction()
@@ -78,6 +97,7 @@
             paletteCollection.palettes.unshift(new Palette.Palette());
             paletteCollection.palettes[0].colours = paletteCollection.palettes[1].colours;
             paletteCollection.palettes[0].image = paletteCollection.palettes[1].image;
+            paletteCollection.palettes[0].style = paletteCollection.palettes[1].style;
         }
 
         //Updates the colour swatches based on the palette you give it
@@ -169,8 +189,12 @@
         //Events ---------------------------------------------------------------------------------------
         $("#shuffle").click(function(){
             disableInteraction()
-            duplicateLatestPalette();
-            getLatestPalette().shuffleColours();
+            //duplicateLatestPalette();
+            //console.log(getLatestPalette());
+            //getLatestPalette().shuffleColours();
+            createShuffledPalette();
+            
+            //console.log(paletteCollection);
             mapController.applyPalette(getLatestPalette());
             updateSwatches(getLatestPalette());
             enableInteraction()
