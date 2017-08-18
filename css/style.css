@@ -22,21 +22,6 @@ body {
   bottom: 36px;
   right: 20px;
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  .dialog {
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  .dialog {
-    bottom: 50px;
-    right: 0px;
-    left: 0px;
-    font-size: 28px;
-  }
-}
 .dialog .card {
   position: relative;
   width: 400px;
@@ -66,17 +51,7 @@ body {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
   .dialog .card {
-    border-radius: 0px;
-    width: 100%;
-    height: 300px;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  .dialog .card {
-    border-radius: 0px;
-    width: 100%;
-    height: 300px;
-    font-size: 28px;
+    width: 300px;
   }
 }
 .dialog .card .card-primary {
@@ -91,6 +66,26 @@ body {
 }
 .dialog .card .card-primary ul.pull-right {
   float: right;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .dialog .card .card-primary ul.pull-right {
+    display: none;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .dialog .card .card-primary ul.pull-right {
+    display: none;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .dialog .card .card-primary ul.pull-left {
+    display: none;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .dialog .card .card-primary ul.pull-left {
+    display: none;
+  }
 }
 .dialog .card .card-primary ul li {
   float: left;
@@ -143,20 +138,7 @@ body {
   position: relative;
   padding: 0;
   border-radius: 0 0 0px 0px;
-  height: calc(268px);
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  .dialog .card .card-content {
-    border-radius: 0px;
-    height: calc(188px);
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  .dialog .card .card-content {
-    border-radius: 0px;
-    height: calc(188px);
-    font-size: 28px;
-  }
+  height: calc(248px);
 }
 .dialog .card .card-swatches {
   width: 100%;
@@ -220,6 +202,6 @@ body {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 2) {
   .dialog .card .btn {
-    font-size: 28px;
+    font-size: 21px;
   }
 }
