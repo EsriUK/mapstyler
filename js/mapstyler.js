@@ -9,6 +9,7 @@
         var paletteCollection = new Object; 
         paletteCollection.palettes = new Array; //where 0 is the latest and the rest are for the undo stack
         paletteCollection.firstLoad = true;
+        paletteCollection.history = 5; //number of palletes to store for the undo stack
 
         //Functions  -----------------------------------------------------------------------------------
 
@@ -49,8 +50,10 @@
             disableInteraction()
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
+            if (paletteCollection.palettes.length == paletteCollection.history){
+                paletteCollection.palettes.pop();
+            }
             paletteCollection.palettes.unshift(myPalette);
-            
             getLatestPalette().generateColours(image).done(function(){
                 updateSwatches(getLatestPalette());
                 mapController.applyPalette(getLatestPalette());
@@ -68,6 +71,9 @@
         //creates a new palette and puts it at the front of the collection
         function createNewPalette(){
             var myPalette = new Palette.Palette();
+            if (paletteCollection.palettes.length == paletteCollection.history){
+                paletteCollection.palettes.pop();
+            }
             paletteCollection.palettes.unshift(myPalette);
             //tbc
         }
@@ -75,6 +81,9 @@
         //takes a copy of the most recent palette in the collection 
         //this is the best way to make adjustments to a palette, whilst maintaining the undo/redo stack
         function duplicateLatestPalette(){
+            if (paletteCollection.palettes.length == paletteCollection.history){
+                paletteCollection.palettes.pop();
+            }
             paletteCollection.palettes.unshift(new Palette.Palette());
             paletteCollection.palettes[0].colours = paletteCollection.palettes[1].colours;
             paletteCollection.palettes[0].image = paletteCollection.palettes[1].image;
