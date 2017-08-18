@@ -48,7 +48,9 @@
         function createShuffledPalette(){
             //duplicateLatestPalette();
             var palette = new Palette.Palette();
-            palette.colours = getLatestPalette().colours;
+            //we need to do toString to break the referernce back to the original values
+            var c = getLatestPalette().colours.toString();
+            palette.colours = c.split(',');
             palette.style = getLatestPalette().style;
             palette.image = getLatestPalette().image;
             //shuffle
