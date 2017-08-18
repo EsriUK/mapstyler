@@ -10,6 +10,7 @@
         paletteCollection.palettes = new Array; //where 0 is the latest and the rest are for the undo stack
         paletteCollection.firstLoad = true;
         paletteCollection.history = 5; //number of palletes to store for the undo stack
+        paletteCollection.undoPosition = 1;
 
         //Functions  -----------------------------------------------------------------------------------
 
@@ -46,6 +47,7 @@
         }
 
         function createShuffledPalette(){
+            paletteCollection.undoPosition = 1;
             //duplicateLatestPalette();
             var palette = new Palette.Palette();
             //we need to do toString to break the referernce back to the original values
@@ -68,6 +70,7 @@
 
         //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
+            paletteCollection.undoPosition = 1;
             disableInteraction()
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
@@ -244,10 +247,18 @@
                 Utils.updateCanvas($(img).attr('src'));
             });
             paletteCollection.palettes.push(paletteCollection.palettes.shift());
+            paletteCollection.undoPosition++;
+            if (paletteCollection.undoPosition == paletteCollection.palettes.length){
+                $("#undo").attr('class', 'btn disabled')
+            }
+            else{
+
+            }
         });
 
         //Redo stuff
         $("#redo").click(function(){
+            $("#undo").attr('class', 'btn');
             paletteCollection.palettes.unshift(paletteCollection.palettes.pop());
             updateSwatches(paletteCollection.palettes[0]);
             mapController.applyPalette(paletteCollection.palettes[0]);
@@ -256,6 +267,13 @@
             img.addEventListener('load', function () {
                 Utils.updateCanvas($(img).attr('src'));
             });
+            paletteCollection.undoPosition--; 
+            if (paletteCollection.undoPosition == 1){
+                $("#redo").attr('class', 'btn disabled')
+            }
+            else{
+
+            }           
         });
 
          //Wait for an image to be dropped on the lower right UI panel...

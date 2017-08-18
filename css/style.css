@@ -123,6 +123,8 @@ body {
 }
 .dialog .card .card-primary ul li.undo a.disabled {
   background-position: 0 -24px;
+  pointer-events: none;
+  cursor: default;
 }
 .dialog .card .card-primary ul li.redo a {
   width: 24px;
@@ -132,6 +134,8 @@ body {
 }
 .dialog .card .card-primary ul li.redo a.disabled {
   background-position: 0 -72px;
+  pointer-events: none;
+  cursor: default;
 }
 .dialog .card .card-primary ul li.random a {
   width: 24px;
