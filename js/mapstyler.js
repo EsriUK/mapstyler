@@ -47,6 +47,7 @@
         }
 
         function createShuffledPalette(){
+            paletteCollection.undoPosition = 1;
             //duplicateLatestPalette();
             var palette = new Palette.Palette();
             palette.colours = getLatestPalette().colours;
@@ -67,6 +68,7 @@
 
         //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
+            paletteCollection.undoPosition = 1;
             disableInteraction()
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
