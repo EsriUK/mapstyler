@@ -37,6 +37,16 @@ body {
 		right: 0px;	
 	}
 
+	@media @mobile-landscape {
+		position: absolute;
+		bottom: 0px;
+		right: 0px;
+		height: 100%;
+		width: 40%;
+	}
+
+
+
 	.card {
 
 		position: relative;
@@ -47,7 +57,7 @@ body {
 		@shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 		.box-shadow(@shadow);
 		border-radius: @border-radius-base;
-		overflow: hidden;
+		//overflow: hidden;
 
 		.upload-btn-wrapper {
 			
@@ -71,14 +81,13 @@ body {
 		}
 
 		@media @mobile-landscape {
-			width: 20em;		
+			height: 100%;
+			width: 100%;			
 		}
 		@media @mobile-portrait {
 			height: 100%;
 			width: 100%;		
 		}
-
-
 
 		.card-primary {
 
@@ -88,6 +97,10 @@ body {
 			@media @mobile-portrait {
 				height: 5%;	
 				min-height: 5%;
+			}	
+			@media @mobile-landscape {
+				height: 10%;	
+				min-height: 10%;
 			}	
 
 			ul {
@@ -204,6 +217,9 @@ body {
 			@media @mobile-portrait {
 				height: 75%;	
 			}
+			@media @mobile-landscape {
+				height: 65%;	
+			}
 		}
 
 
@@ -225,6 +241,8 @@ body {
 
 			@media @mobile-landscape {
 				pointer-events: none;
+				height: 10%;
+				
 			}
 
 			@media @mobile-portrait {
@@ -246,6 +264,11 @@ body {
 			@media @mobile-portrait {
 				height: 15%;	
 			}
+			
+			@media @mobile-landscape {
+				height: 20%;	
+			}
+
 
 			a {
 				display: table-cell;
@@ -271,6 +294,7 @@ body {
 			@media @mobile-portrait {
 				font-size: @font-size-large;
 			}
+			
 		}
 	}
 }

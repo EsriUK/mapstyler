@@ -10,15 +10,14 @@
         paletteCollection.palettes = new Array; //where 0 is the latest and the rest are for the undo stack
         paletteCollection.firstLoad = true;
         paletteCollection.history = 5; //number of palletes to store for the undo stack
-        paletteCollection.undoPosition = 1;
+        paletteCollection.undoPosition = 1;      
 
         //Functions  -----------------------------------------------------------------------------------
 
         //Build the map and generate a palette from a random image
         function initialise(){
             mapController.buildMap().done(function () {
-                createRandomPalette().done(function(){
-                    
+                createRandomPalette().done(function(){                  
                 });
             });
         } 
@@ -153,7 +152,7 @@
 
         //function to stop the user breaking the app
         function enableInteraction(){
-            $("body").removeAttr("style");
+            $("body").css("pointer-events", "auto");
         }
 
         //sets up the swatch editing UI
