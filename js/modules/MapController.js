@@ -32,7 +32,7 @@ define([
         });
 
         this.view.ui.add(searchWidget, {
-            position: "top-left",
+            position: "top-right",
             index: 0
         });
 

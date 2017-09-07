@@ -156,7 +156,7 @@ body {
 .dialog .card .card-primary ul li.random a {
   width: 24px;
   height: 24px;
-  display: block;
+  display: none;
   background-position: 0 -120px;
 }
 .dialog .card .card-primary ul li.help {

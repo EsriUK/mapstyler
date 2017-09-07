@@ -29,31 +29,63 @@
             var myPalette = new Palette.Palette();
             //Unsplash Colours and Patterns collection
             var url = "//source.unsplash.com/collection/175083/400x248";
-            $.get(url).done(function(data){
-                createPaletteFromImage(url).done(function(){
-                    enableInteraction()
-                    if(paletteCollection.firstLoad == true){
-                        paletteCollection.firstLoad = false;
-                    }
-                    else{
-                        $("#undo").attr('class', 'btn');
-                        $("#redo").attr('class', 'btn disabled');
-                    }
-                })            
-            }).fail(function(){
-                $(".random").css('display', 'none');
-                var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
-                createPaletteFromImage(url).done(function(){
-                    enableInteraction()
-                    if(paletteCollection.firstLoad == true){
-                        paletteCollection.firstLoad = false;
-                    }
-                    else{
-                        $("#undo").attr('class', 'btn');
-                        $("#redo").attr('class', 'btn disabled');
-                    }
-                }) 
+
+            $.ajax({
+                url: url,
+                error: function(){
+                    $(".random").css('display', 'none');
+                    var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
+                    createPaletteFromImage(url).done(function(){
+                        enableInteraction()
+                        if(paletteCollection.firstLoad == true){
+                            paletteCollection.firstLoad = false;
+                        }
+                        else{
+                            $("#undo").attr('class', 'btn');
+                            $("#redo").attr('class', 'btn disabled');
+                        }
+                    }) 
+                },
+                success: function(){
+                    $(".random").css('display', 'block');
+                    createPaletteFromImage(url).done(function(){
+                        enableInteraction()
+                        if(paletteCollection.firstLoad == true){
+                            paletteCollection.firstLoad = false;
+                        }
+                        else{
+                            $("#undo").attr('class', 'btn');
+                            $("#redo").attr('class', 'btn disabled');
+                        }
+                    })  
+                },
+                timeout: 2000 
             });
+            // $.get(url).done(function(data){
+            //     createPaletteFromImage(url).done(function(){
+            //         enableInteraction()
+            //         if(paletteCollection.firstLoad == true){
+            //             paletteCollection.firstLoad = false;
+            //         }
+            //         else{
+            //             $("#undo").attr('class', 'btn');
+            //             $("#redo").attr('class', 'btn disabled');
+            //         }
+            //     })            
+            // }).fail(function(){
+            //     $(".random").css('display', 'none');
+            //     var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
+            //     createPaletteFromImage(url).done(function(){
+            //         enableInteraction()
+            //         if(paletteCollection.firstLoad == true){
+            //             paletteCollection.firstLoad = false;
+            //         }
+            //         else{
+            //             $("#undo").attr('class', 'btn');
+            //             $("#redo").attr('class', 'btn disabled');
+            //         }
+            //     }) 
+            // });
             return paletteWait.promise();
         }
 
