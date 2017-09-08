@@ -110,6 +110,7 @@
 
         //Creates a palette from an image and applies it to the map
         function createPaletteFromImage(image){
+            //Ben to do stuff
             $("a#save").attr('class', 'btn')  
             $('a#save').text('SAVE');                                        
             paletteCollection.undoPosition = 1;
