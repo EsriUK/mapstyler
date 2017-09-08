@@ -35,26 +35,14 @@
                     var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
                     createPaletteFromImage(url).done(function(){
                         enableInteraction()
-                        if(paletteCollection.firstLoad == true){
-                            paletteCollection.firstLoad = false;
-                        }
-                        else{
-                            $("#undo").attr('class', 'btn');
-                            $("#redo").attr('class', 'btn disabled');
-                        }
+                        
                     }) 
                 },
                 success: function(){
                     $(".random").css('display', 'block');
                     createPaletteFromImage(url).done(function(){
                         enableInteraction()
-                        if(paletteCollection.firstLoad == true){
-                            paletteCollection.firstLoad = false;
-                        }
-                        else{
-                            $("#undo").attr('class', 'btn');
-                            $("#redo").attr('class', 'btn disabled');
-                        }
+                        
                     })  
                 },
                 timeout: 2000 
@@ -94,10 +82,17 @@
             getLatestPalette().generateColours(image).done(function(result){
                 if (result == "error"){
                     paletteCollection.palettes.shift();                    
-                    alert("Unsupported file format.")
+                    alert("Unsupported file format")
                     paletteWait.resolve("error");
                 }
                 else{
+                    if(paletteCollection.firstLoad == true){
+                        paletteCollection.firstLoad = false;
+                    }
+                    else{
+                        $("#undo").attr('class', 'btn');
+                        $("#redo").attr('class', 'btn disabled');
+                    }
                     if (paletteCollection.palettes.length == paletteCollection.history){
                         paletteCollection.palettes.pop();
                     }
@@ -200,13 +195,6 @@
                     reader.onload = $.proxy(function (file, $fileList, event) {
                         createPaletteFromImage(event.target.result).done(function(){
                             enableInteraction()
-                    if(paletteCollection.firstLoad == true){
-                        paletteCollection.firstLoad = false;
-                    }
-                    else{
-                        $("#undo").attr('class', 'btn');
-                        $("#redo").attr('class', 'btn disabled');
-                    }
                         })
                     }, this, file, $("#fileList"));
                     reader.readAsDataURL(file);
