@@ -1,12 +1,29 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);
 #disable {
   text-align: center;
-  margin-top: 25%;
   display: none;
+  background-color: #262626;
+  color: #ffffff;
+  pointer-events: none;
+  overflow: hidden;
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   #disable {
     display: block;
+  }
+}
+#disable > h1 {
+  height: 100px;
+  line-height: 100px;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -50px;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
+  #viewDiv {
+    display: none;
   }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
@@ -59,6 +76,7 @@ body {
     right: 0px;
     height: 100%;
     width: 40%;
+    display: none;
   }
 }
 .dialog .card {

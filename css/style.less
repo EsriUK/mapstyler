@@ -4,12 +4,32 @@
 
 #disable {
     text-align: center;
-    margin-top: 25%;
 	display: none;
+    background-color: #262626;
+    color: #ffffff;
+    pointer-events: none;
+    overflow: hidden;
+    
 	
 	@media @mobile-landscape {
 		display: block;
 	}
+}
+
+#disable > h1 {
+    height: 100px;
+    line-height: 100px;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -50px;
+}
+
+#viewDiv {
+    @media @mobile-landscape {
+		display: none;
+	} 
 }
 
 .esri-widget {
@@ -63,6 +83,7 @@ body {
 		right: 0px;
 		height: 100%;
 		width: 40%;
+        display: none;
 	}
 
 
