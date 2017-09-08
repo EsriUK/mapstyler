@@ -12,8 +12,14 @@ define(["modules/Utils"], function(Utils) {
         this.image = image;
         if (image.startsWith("data")) {
             Utils.imageToColours(image, 5).done(function(result) {
-                that.colours = result;
-                paletteWait.resolve();
+                if (result == "error"){
+                    paletteWait.resolve("error");                    
+                }
+                else{
+                    that.colours = result;
+                    paletteWait.resolve("success");
+                }
+
             });
         } else {
             Utils.imageToBase64(image, function(result) {
