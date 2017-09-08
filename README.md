@@ -17,12 +17,21 @@ Check out the app [here](http://esriuk.com/mapstyler).
 
 Find a bug or want to request a new feature? Please let us know by submitting an issue.
 
-## Grunt command
+## Grunt commands
 
-run the following commands
+### Requirements
 
-> npm install
-> grunt watch
+* [nodejs](https://nodejs.org/en/)
+* [gruntjs](https://gruntjs.com/)
+
+### Installation
+
+* clone this repo
+* cd into the root dir of project
+* run: npm install
+* run: grunt watch
+
+... now if you edit the .less files the Grunt Task Runner will watch for change and compile you nice new .css files
 
 ## Licensing
 
