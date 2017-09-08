@@ -144,11 +144,13 @@
         //function to stop the user breaking the app
         function disableInteraction(){
             $("body").css("pointer-events", "none");
+            $("#loadingDiv").css("display", "block");
         }
 
         //function to stop the user breaking the app
         function enableInteraction(){
             $("body").css("pointer-events", "auto");
+            $("#loadingDiv").css("display", "none");
         }
 
         //sets up the swatch editing UI

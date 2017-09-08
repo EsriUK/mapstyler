@@ -2,12 +2,12 @@ body{
     pointer-events: none;
 }
 body,
-#viewDiv {
+#viewDiv,
+#disable {
     padding: 0;
     margin: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(11, 11, 12, 0.78);
 }
 .modal {
     display: none;
