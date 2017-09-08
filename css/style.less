@@ -3,12 +3,15 @@
 @import "mixins.less";
 
 .upload-btn-mobile {
+	width:100%;
+	height:50px;
 	position: absolute;
-	bottom: 50px;
-	right: 50px;
+	bottom: 15px;
 	display: none;
 	@media @mobile-portrait {
 		display: block;
+		bottom: 50px;	
+		height: 75px;	
 	}
 	@media @mobile-landscape {
 		display: block;
@@ -17,14 +20,21 @@
 		border: none;
 		background-color: @card-bg;
 		font-family: @font-family-base;
+		width: 100%;
+		height: 50px;
+		font-size: 2em;
+		@media @mobile-portrait {
+			height: 75px;	
+		}
 	}
 
 	input[type=file] {
-		font-size: 250px;
 		position: absolute;
 		left: 0;
 		top: 0;
 		opacity: 0;
+		width:100%;
+		height:100%
 	}
 }
 
