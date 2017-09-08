@@ -25,11 +25,13 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
             var img = document.createElement('img');
             img.setAttribute("src", image);
             img.addEventListener('load', function () {
-                //Update the canvas to display the image preview
-                updateCanvas($(img).attr('src'));
                 var colorThief = new ColorThief();
                 //Request ColorThief to return a palette of five colours from the image that we can use to update the map's style
                 var colorThiefColors = colorThief.getPalette(img, numberOfColours);
+                if (colorThiefColors != null){
+                    //Update the canvas to display the image preview
+                    updateCanvas($(img).attr('src'));
+                }
                 for (var colors in colorThiefColors) {
                     colorThiefColors[colors] = rgbToHex(colorThiefColors[colors][0], colorThiefColors[colors][1], colorThiefColors[colors][2]);
                 }
