@@ -10,6 +10,7 @@ define([
 
         var portal,info;
 
+        //Initialises the portal if the user hasn't already logged in
         function initPortal(){
             portal = new Portal;
             info = new OAuthInfo({
@@ -20,7 +21,7 @@ define([
             esriId.registerOAuthInfos([info]);
         }
 
-
+        //Adds the tile layer to your portal content
         function addItem(json, itemName) {
             var deferred = $.Deferred();
             var urlKey = portal.urlKey;
@@ -65,6 +66,8 @@ define([
             );
             return deferred.promise();
         }
+
+        //Triggers the OAuth login and saves the tile layer
         var saveMap = function(style){
             var deferred = $.Deferred();
             portal.authMode = "immediate";
