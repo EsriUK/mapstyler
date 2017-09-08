@@ -68,7 +68,7 @@
                 var latestPalette = getLatestPalette();
                 if (result == "error" || latestPalette.colours == null){
                     paletteCollection.palettes.shift();                    
-                    alert("Unsupported file format")
+                    alert("Unsupported file")
                     paletteWait.resolve("error");
                 }
                 else{
