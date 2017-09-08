@@ -1,4 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);
+#disable {
+  text-align: center;
+  margin-top: 25%;
+  display: none;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
+  #disable {
+    display: block;
+  }
+}
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   .esri-widget {
     display: block;

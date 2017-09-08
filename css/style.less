@@ -2,6 +2,16 @@
 @import "variables.less";
 @import "mixins.less";
 
+#disable {
+    text-align: center;
+    margin-top: 25%;
+	display: none;
+	
+	@media @mobile-landscape {
+		display: block;
+	}
+}
+
 .esri-widget {
     @media @mobile-landscape {
 		display: block;
