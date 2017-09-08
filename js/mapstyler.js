@@ -92,18 +92,18 @@
             var myPalette = new Palette.Palette();
             paletteCollection.palettes.unshift(myPalette);
             getLatestPalette().generateColours(image).done(function(result){
-                if (result == "success"){
+                if (result == "error"){
+                    paletteCollection.palettes.shift();                    
+                    alert("Unsupported file format.")
+                    paletteWait.resolve("error");
+                }
+                else{
                     if (paletteCollection.palettes.length == paletteCollection.history){
                         paletteCollection.palettes.pop();
                     }
                     updateSwatches(getLatestPalette());
                     mapController.applyPalette(getLatestPalette());
                     paletteWait.resolve();
-                }
-                else{
-                    paletteCollection.palettes.shift();                    
-                    alert("Unsupported file format.")
-                    paletteWait.resolve("error");
                 }
             });       
                   
