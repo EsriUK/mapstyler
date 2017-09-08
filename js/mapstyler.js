@@ -33,8 +33,6 @@
             createPaletteFromImage(url).done(function(){
                 enableInteraction()
             }) 
-
-            return paletteWait.promise();
         }
 
         function createShuffledPalette(){
