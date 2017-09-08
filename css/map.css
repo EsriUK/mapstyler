@@ -95,10 +95,10 @@ hr {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 14px;
-    color: #303d4c;
-    background: #f950f5;
+    color: #ffffff;
+    background: #9c2692;
     padding: 12px 32px;
-    border: solid #f950f5 1px;
+    border: solid #9c2692 1px;
     text-decoration: none;
 	cursor: pointer;
 }
