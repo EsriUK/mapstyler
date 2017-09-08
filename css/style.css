@@ -1,12 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   .esri-widget {
-    display: none;
+    display: block;
   }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
   .esri-widget {
-    display: none;
+    display: block;
   }
 }
 .sp-initial {
@@ -156,7 +156,7 @@ body {
 .dialog .card .card-primary ul li.random a {
   width: 24px;
   height: 24px;
-  display: none;
+  display: block;
   background-position: 0 -120px;
 }
 .dialog .card .card-primary ul li.help {

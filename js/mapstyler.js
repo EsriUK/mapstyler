@@ -33,8 +33,6 @@
             createPaletteFromImage(url).done(function(){
                 enableInteraction()
             }) 
-
-            return paletteWait.promise();
         }
 
         function createShuffledPalette(){
@@ -321,3 +319,10 @@
         initialise();
 
     });
+
+
+
+    // ---------- PREVENT SCROLLING ON MOBILE DEVICES ------------
+      document.ontouchmove = function(event) {
+          event.preventDefault();
+      }
