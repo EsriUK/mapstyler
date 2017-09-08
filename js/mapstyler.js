@@ -17,6 +17,7 @@
         //Build the map and generate a palette from a random image
         function initialise(){
             mapController.buildMap().done(function () {
+                Portal.initPortal();
                 createRandomPalette().done(function(){                  
                 });
             });
@@ -298,8 +299,15 @@
         $('#save').click(function () {
             $('a#save').text('SAVING');   
             $("a#save").attr('class', 'btn disabled')         
-            Portal.saveMap(getLatestPalette().style).done(function(){
-                $('a#save').text('SAVED!');                
+            Portal.saveMap(getLatestPalette().style).done(function(result){
+                if(result == "error"){
+                    $('a#save').text('SAVE');
+                    $("a#save").attr('class', 'btn')  
+                    Portal.initPortal();                    
+                }
+                else{
+                    $('a#save').text('SAVED!');                                    
+                }
             });
             //$('#save > img').hide();
             //$('.sk-circle').show();
