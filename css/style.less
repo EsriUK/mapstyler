@@ -2,17 +2,41 @@
 @import "variables.less";
 @import "mixins.less";
 
+.upload-btn-mobile {
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	display: none;
+	@media @mobile-portrait {
+		display: block;
+	}
+	@media @mobile-landscape {
+		display: block;
+	}
+	.btn {
+		border: none;
+		background-color: @card-bg;
+		font-family: @font-family-base;
+	}
+
+	input[type=file] {
+		font-size: 250px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0;
+	}
+}
+
 #disable {
     text-align: center;
 	display: none;
     background-color: #262626;
     color: #ffffff;
     pointer-events: none;
-    overflow: hidden;
-    
-	
+    overflow: hidden;	
 	@media @mobile-landscape {
-		display: block;
+		display: none;
 	}
 }
 
@@ -28,17 +52,17 @@
 
 #viewDiv {
     @media @mobile-landscape {
-		display: none;
+		display: block;
 	} 
 }
 
 .esri-widget {
     @media @mobile-landscape {
-		display: block;
+		display: none;
 	}
 	
 	@media @mobile-portrait {
-		display: block;		
+		display: none;		
 	}
 }
 
@@ -72,24 +96,14 @@ body {
 	right: @padding-base-horizontal;
 
 	@media @mobile-portrait {
-		height: @dialog-mobile-height;
-		width: 100%;	
-		right: 0px;	
+		display:none
 	}
 
 	@media @mobile-landscape {
-		position: absolute;
-		bottom: 0px;
-		right: 0px;
-		height: 100%;
-		width: 40%;
         display: none;
 	}
 
-
-
 	.card {
-
 		position: relative;
 		width: @card-width-base;
 		height: @card-height-base;
@@ -135,14 +149,6 @@ body {
 			position: relative;
 			min-height: @card-primary-height-base;
 
-			@media @mobile-portrait {
-				height: 5%;	
-				min-height: 5%;
-			}	
-			@media @mobile-landscape {
-				height: 10%;	
-				min-height: 10%;
-			}	
 
 			ul {
 				
@@ -153,25 +159,8 @@ body {
 
 				&.pull-right {
 					float: right;
+				}
 
-					@media @mobile-landscape {
-						display: none;
-					}
-					
-					@media @mobile-portrait {
-						display: none;	
-					}	
-				}
-				&.pull-left {
-					
-					@media @mobile-landscape {
-						display: none;
-					}
-					
-					@media @mobile-portrait {
-						display: none;	
-					}	
-				}
 
 				li {
 					float: left;
@@ -254,13 +243,6 @@ body {
 			padding: 0;
 			border-radius: 0 0 @border-radius-base @border-radius-base;
 			height: @card-content-height-base;
-
-			@media @mobile-portrait {
-				height: 75%;	
-			}
-			@media @mobile-landscape {
-				height: 65%;	
-			}
 		}
 
 
@@ -279,17 +261,6 @@ body {
 				&:nth-child(4) { background: #f4f4f4; }
 				&:nth-child(5) { background: #f4f4f4; }
 			}
-
-			@media @mobile-landscape {
-				pointer-events: none;
-				height: 10%;
-				
-			}
-
-			@media @mobile-portrait {
-				pointer-events: none;
-				height: 10%;
-			}
 		}
 
 		.card-action {
@@ -301,15 +272,6 @@ body {
 			display: table;
 			table-layout: fixed;
 			text-align: center;
-
-			@media @mobile-portrait {
-				height: 15%;	
-			}
-			
-			@media @mobile-landscape {
-				height: 20%;	
-			}
-
 
 			a {
 				display: table-cell;
@@ -324,18 +286,12 @@ body {
 				}
 			}
 		}
-
 		.btn {
 			font-size: 14px;
 			text-transform: uppercase;
 			font-weight: 500;
 			text-decoration: none;
-			color: #303d4c;
-
-			@media @mobile-portrait {
-				font-size: @font-size-large;
-			}
-			
+			color: #303d4c;	
 		}
 	}
 }

@@ -1,4 +1,32 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700);
+.upload-btn-mobile {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  display: none;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
+  .upload-btn-mobile {
+    display: block;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
+  .upload-btn-mobile {
+    display: block;
+  }
+}
+.upload-btn-mobile .btn {
+  border: none;
+  background-color: #f4f4f4;
+  font-family: "Montserrat", sans-serif;
+}
+.upload-btn-mobile input[type=file] {
+  font-size: 250px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 #disable {
   text-align: center;
   display: none;
@@ -9,7 +37,7 @@
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   #disable {
-    display: block;
+    display: none;
   }
 }
 #disable > h1 {
@@ -23,17 +51,17 @@
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   #viewDiv {
-    display: none;
+    display: block;
   }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   .esri-widget {
-    display: block;
+    display: none;
   }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
   .esri-widget {
-    display: block;
+    display: none;
   }
 }
 .diy {
@@ -64,18 +92,11 @@ body {
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
   .dialog {
-    height: 46%;
-    width: 100%;
-    right: 0px;
+    display: none;
   }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
   .dialog {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    height: 100%;
-    width: 40%;
     display: none;
   }
 }
@@ -121,18 +142,6 @@ body {
   position: relative;
   min-height: 40px;
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .card-primary {
-    height: 5%;
-    min-height: 5%;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .dialog .card .card-primary {
-    height: 10%;
-    min-height: 10%;
-  }
-}
 .dialog .card .card-primary ul {
   float: left;
   list-style: none;
@@ -141,26 +150,6 @@ body {
 }
 .dialog .card .card-primary ul.pull-right {
   float: right;
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .dialog .card .card-primary ul.pull-right {
-    display: none;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .card-primary ul.pull-right {
-    display: none;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .dialog .card .card-primary ul.pull-left {
-    display: none;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .card-primary ul.pull-left {
-    display: none;
-  }
 }
 .dialog .card .card-primary ul li {
   float: left;
@@ -215,16 +204,6 @@ body {
   border-radius: 0 0 0px 0px;
   height: calc(248px);
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .card-content {
-    height: 75%;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .dialog .card .card-content {
-    height: 65%;
-  }
-}
 .dialog .card .card-swatches {
   width: 100%;
   display: table;
@@ -249,18 +228,6 @@ body {
 .dialog .card .card-swatches .swatch:nth-child(5) {
   background: #f4f4f4;
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .dialog .card .card-swatches {
-    pointer-events: none;
-    height: 10%;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .card-swatches {
-    pointer-events: none;
-    height: 10%;
-  }
-}
 .dialog .card .card-action {
   position: relative;
   background-color: inherit;
@@ -269,16 +236,6 @@ body {
   display: table;
   table-layout: fixed;
   text-align: center;
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .card-action {
-    height: 15%;
-  }
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : landscape) {
-  .dialog .card .card-action {
-    height: 20%;
-  }
 }
 .dialog .card .card-action a {
   display: table-cell;
@@ -296,9 +253,4 @@ body {
   font-weight: 500;
   text-decoration: none;
   color: #303d4c;
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation : portrait) {
-  .dialog .card .btn {
-    font-size: 21px;
-  }
 }

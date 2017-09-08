@@ -240,6 +240,9 @@
         $("#upload").change(function(){
             getImageUpload(this);
         });
+        $("#upload-mobile").change(function(){
+            getImageUpload(this);
+        });
         //Undo stuff
         $("#undo").click(function(){
             $("#redo").attr('class', 'btn');
