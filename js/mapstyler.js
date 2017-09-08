@@ -17,6 +17,7 @@
         //Build the map and generate a palette from a random image
         function initialise(){
             mapController.buildMap().done(function () {
+                Portal.initPortal();
                 createRandomPalette().done(function(){                  
                 });
             });
@@ -62,7 +63,7 @@
             paletteCollection.undoPosition = 1;
             disableInteraction()
             var paletteWait = $.Deferred();
-            var myPalette = new Palette.Palette();
+            var myPalette = new Palette.Palette(false);
             paletteCollection.palettes.unshift(myPalette);
             getLatestPalette().generateColours(image).done(function(result){
                 var latestPalette = getLatestPalette();
@@ -84,6 +85,7 @@
                     }
                     updateSwatches(getLatestPalette());
                     mapController.applyPalette(getLatestPalette());
+                    $("#diy").css("display",  "none");
                     paletteWait.resolve();
                 }
             });       
@@ -97,8 +99,8 @@
         }
 
         //creates a new palette and puts it at the front of the collection
-        function createNewPalette(){
-            var myPalette = new Palette.Palette();
+        function createNewPalette(diy){
+            var myPalette = new Palette.Palette(diy);
             if (paletteCollection.palettes.length == paletteCollection.history){
                 paletteCollection.palettes.pop();
             }
@@ -119,7 +121,7 @@
             if (paletteCollection.palettes.length == paletteCollection.history){
                 paletteCollection.palettes.pop();
             }
-            paletteCollection.palettes.unshift(new Palette.Palette());
+            paletteCollection.palettes.unshift(new Palette.Palette(getLatestPalette().isDiy()));
 
             //We have to use .toString here to break the referernce to the original data
             var c = paletteCollection.palettes[1].colours.toString();
@@ -162,6 +164,9 @@
                 duplicateLatestPalette();
                 var id = this.id.substring(7, 8);
                 getLatestPalette().updateColour(id-1,color.toHexString());
+                //Display DIY mode
+                getLatestPalette().setDiy(true);
+                $("#diy").css("display",  "block");
                 mapController.applyPalette(getLatestPalette());
                 $("[id^='swatch']").css("pointer-events", "auto");
             },
@@ -240,6 +245,11 @@
         $("#undo").click(function(){
             $("#redo").attr('class', 'btn');
             updateSwatches(paletteCollection.palettes[1]);
+            if(paletteCollection.palettes[1].isDiy() == true){
+                $("#diy").css("display",  "block");
+            } else {
+                $("#diy").css("display",  "none");
+            }
             mapController.applyPalette(paletteCollection.palettes[1]);
             var img = document.createElement('img');
             img.setAttribute("src", paletteCollection.palettes[1].image);
@@ -261,6 +271,11 @@
             $("#undo").attr('class', 'btn');
             paletteCollection.palettes.unshift(paletteCollection.palettes.pop());
             updateSwatches(paletteCollection.palettes[0]);
+            if(paletteCollection.palettes[0].isDiy() == true){
+                $("#diy").css("display",  "block");
+            } else {
+                $("#diy").css("display",  "none");
+            }
             mapController.applyPalette(paletteCollection.palettes[0]);
             var img = document.createElement('img');
             img.setAttribute("src", paletteCollection.palettes[0].image);
@@ -300,8 +315,15 @@
         $('#save').click(function () {
             $('a#save').text('SAVING');   
             $("a#save").attr('class', 'btn disabled')         
-            Portal.saveMap(getLatestPalette().style).done(function(){
-                $('a#save').text('SAVED!');                
+            Portal.saveMap(getLatestPalette().style).done(function(result){
+                if(result == "error"){
+                    $('a#save').text('SAVE');
+                    $("a#save").attr('class', 'btn')  
+                    Portal.initPortal();                    
+                }
+                else{
+                    $('a#save').text('SAVED!');                                    
+                }
             });
             //$('#save > img').hide();
             //$('.sk-circle').show();

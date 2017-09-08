@@ -8,13 +8,18 @@ define([
 ],
     function (esriConfig, Portal, PortalQueryParams, OAuthInfo, esriId, esriRequest) {
 
-        var portal = new Portal;
-        var info = new OAuthInfo({
-            appId: "OkNkeFOIGhEQYJiD",
-            popup: true
-        });
-        
-        esriId.registerOAuthInfos([info]);
+        var portal,info;
+
+        function initPortal(){
+            portal = new Portal;
+            info = new OAuthInfo({
+                appId: "OkNkeFOIGhEQYJiD",
+                popup: true
+            });
+            
+            esriId.registerOAuthInfos([info]);
+        }
+
 
         function addItem(json, itemName) {
             var deferred = $.Deferred();
@@ -75,19 +80,21 @@ define([
                 var itemName = date1 + "-" + month + "-" + year + " " + hour + ":" + minutes + ":" + seconds;
                 addItem(JSON.parse(style), itemName).done(function(){
                     deferred.resolve();
+                },function(error){
+                    console.log(error);
+                    deferred.resolve("error");
                 });
+            },function(error){
+                console.log(error);
+                deferred.resolve("error");
             });
             return deferred.promise();
         }
 
-        $('#signout').on("click", function () {
-            esriId.destroyCredentials();
-            window.location.reload();
-        });
-
         //Stuff to make public
         return {
-            saveMap: saveMap
+            saveMap: saveMap,
+            initPortal: initPortal
         };
 
         

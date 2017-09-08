@@ -1,9 +1,10 @@
 define(["modules/Utils"], function(Utils) {
 
     //Constructor for a new Palette
-    var Palette = function (){
+    var Palette = function (diy){
         this.image = "";
         this.colours = "";
+        this.diy = diy; //Boolean - is the DIY mode enabled? 
     }
 
     Palette.prototype.generateColours = function(image) {
@@ -63,9 +64,16 @@ define(["modules/Utils"], function(Utils) {
         this.style = style;
     }
 
+    Palette.prototype.isDiy = function(){
+        return this.diy;
+    }
+
+    Palette.prototype.setDiy = function(diy){
+        this.diy = diy;
+    }
+
     //Stuff to make public
     return {
         Palette: Palette
-        
     };
 });
