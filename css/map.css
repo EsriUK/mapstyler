@@ -96,16 +96,16 @@ hr {
     font-weight: 500;
     font-size: 14px;
     color: #303d4c;
-    background: #91eb7e;
+    background: #f950f5;
     padding: 12px 32px;
-    border: solid #91eb7e 1px;
+    border: solid #f950f5 1px;
     text-decoration: none;
 	cursor: pointer;
 }
 .go-button:hover {
-    background: #80d674;
+    background: #DD8BD2;
     text-decoration: none;
-    border-color: #80d674;
+    border-color: #DD8BD2;
 }
 
 
