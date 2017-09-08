@@ -37,7 +37,7 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
             });
         }
         else {
-            alert("Unsupported file type")
+            dfd.resolve("error");
         }
         return dfd.promise();
     }

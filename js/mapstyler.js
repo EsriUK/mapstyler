@@ -25,67 +25,15 @@
         //Creates a palette from a random image 
         function createRandomPalette(){
             disableInteraction()
-            var paletteWait = $.Deferred();
-            var myPalette = new Palette.Palette();
-            //Unsplash Colours and Patterns collection
-            var url = "//source.unsplash.com/collection/175083/400x248";
 
-            $.ajax({
-                url: url,
-                error: function(){
-                    $(".random").css('display', 'none');
-                    var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
-                    createPaletteFromImage(url).done(function(){
-                        enableInteraction()
-                        if(paletteCollection.firstLoad == true){
-                            paletteCollection.firstLoad = false;
-                        }
-                        else{
-                            $("#undo").attr('class', 'btn');
-                            $("#redo").attr('class', 'btn disabled');
-                        }
-                    }) 
-                },
-                success: function(){
-                    $(".random").css('display', 'block');
-                    createPaletteFromImage(url).done(function(){
-                        enableInteraction()
-                        if(paletteCollection.firstLoad == true){
-                            paletteCollection.firstLoad = false;
-                        }
-                        else{
-                            $("#undo").attr('class', 'btn');
-                            $("#redo").attr('class', 'btn disabled');
-                        }
-                    })  
-                },
-                timeout: 2000 
-            });
-            // $.get(url).done(function(data){
-            //     createPaletteFromImage(url).done(function(){
-            //         enableInteraction()
-            //         if(paletteCollection.firstLoad == true){
-            //             paletteCollection.firstLoad = false;
-            //         }
-            //         else{
-            //             $("#undo").attr('class', 'btn');
-            //             $("#redo").attr('class', 'btn disabled');
-            //         }
-            //     })            
-            // }).fail(function(){
-            //     $(".random").css('display', 'none');
-            //     var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
-            //     createPaletteFromImage(url).done(function(){
-            //         enableInteraction()
-            //         if(paletteCollection.firstLoad == true){
-            //             paletteCollection.firstLoad = false;
-            //         }
-            //         else{
-            //             $("#undo").attr('class', 'btn');
-            //             $("#redo").attr('class', 'btn disabled');
-            //         }
-            //     }) 
-            // });
+            //Get a random image from the samples folder
+            var rand = Math.floor(Math.random() * 50) + 1 ;
+            var url = "img/samples/" + rand + ".jpg"
+            
+            createPaletteFromImage(url).done(function(){
+                enableInteraction()
+            }) 
+
             return paletteWait.promise();
         }
 
@@ -117,14 +65,28 @@
             disableInteraction()
             var paletteWait = $.Deferred();
             var myPalette = new Palette.Palette();
-            if (paletteCollection.palettes.length == paletteCollection.history){
-                paletteCollection.palettes.pop();
-            }
             paletteCollection.palettes.unshift(myPalette);
-            getLatestPalette().generateColours(image).done(function(){
-                updateSwatches(getLatestPalette());
-                mapController.applyPalette(getLatestPalette());
-                paletteWait.resolve();
+            getLatestPalette().generateColours(image).done(function(result){
+                if (result == "error"){
+                    paletteCollection.palettes.shift();                    
+                    alert("Unsupported file format")
+                    paletteWait.resolve("error");
+                }
+                else{
+                    if(paletteCollection.firstLoad == true){
+                        paletteCollection.firstLoad = false;
+                    }
+                    else{
+                        $("#undo").attr('class', 'btn');
+                        $("#redo").attr('class', 'btn disabled');
+                    }
+                    if (paletteCollection.palettes.length == paletteCollection.history){
+                        paletteCollection.palettes.pop();
+                    }
+                    updateSwatches(getLatestPalette());
+                    mapController.applyPalette(getLatestPalette());
+                    paletteWait.resolve();
+                }
             });       
                   
             return paletteWait.promise();
@@ -220,13 +182,6 @@
                     reader.onload = $.proxy(function (file, $fileList, event) {
                         createPaletteFromImage(event.target.result).done(function(){
                             enableInteraction()
-                    if(paletteCollection.firstLoad == true){
-                        paletteCollection.firstLoad = false;
-                    }
-                    else{
-                        $("#undo").attr('class', 'btn');
-                        $("#redo").attr('class', 'btn disabled');
-                    }
                         })
                     }, this, file, $("#fileList"));
                     reader.readAsDataURL(file);
