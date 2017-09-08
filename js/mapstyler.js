@@ -33,8 +33,6 @@
             createPaletteFromImage(url).done(function(){
                 enableInteraction()
             }) 
-
-            return paletteWait.promise();
         }
 
         function createShuffledPalette(){
@@ -67,7 +65,8 @@
             var myPalette = new Palette.Palette();
             paletteCollection.palettes.unshift(myPalette);
             getLatestPalette().generateColours(image).done(function(result){
-                if (result == "error"){
+                var latestPalette = getLatestPalette();
+                if (result == "error" || latestPalette.colours == null){
                     paletteCollection.palettes.shift();                    
                     alert("Unsupported file format")
                     paletteWait.resolve("error");
@@ -200,13 +199,6 @@
                 reader.onload = function (e) {
                     createPaletteFromImage(e.currentTarget.result).done(function(){
                         enableInteraction()
-                    if(paletteCollection.firstLoad == true){
-                        paletteCollection.firstLoad = false;
-                    }
-                    else{
-                        $("#undo").attr('class', 'btn');
-                        $("#redo").attr('class', 'btn disabled');
-                    }
                     })
                 }
                 reader.readAsDataURL(input.files[0]);
