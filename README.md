@@ -17,6 +17,13 @@ Check out the app [here](http://esriuk.com/mapstyler).
 
 Find a bug or want to request a new feature? Please let us know by submitting an issue.
 
+## Grunt command
+
+run the following commands
+
+> npm install
+> grunt watch
+
 ## Licensing
 
 Copyright 2017 ESRI (UK) Limited
