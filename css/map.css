@@ -2,11 +2,17 @@ body{
     pointer-events: none;
 }
 body,
-#viewDiv {
+#viewDiv,
+#disable {
     padding: 0;
     margin: 0;
     height: 100%;
     width: 100%;
+}
+#disable {
+    text-align: center;
+    margin-top: 25%;
+    display: none;
 }
 .modal {
     display: none;
