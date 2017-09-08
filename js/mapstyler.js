@@ -25,28 +25,15 @@
         //Creates a palette from a random image 
         function createRandomPalette(){
             disableInteraction()
-            //Unsplash Colours and Patterns collection
-            var url = "//source.unsplash.com/collection/175083/400x248";
 
-            $.ajax({
-                url: url,
-                error: function(){
-                    $(".random").css('display', 'none');
-                    var url = "https://pbs.twimg.com/profile_images/842376899083010048/jMcxDSzs_400x400.jpg"
-                    createPaletteFromImage(url).done(function(){
-                        enableInteraction()
-                        
-                    }) 
-                },
-                success: function(){
-                    $(".random").css('display', 'block');
-                    createPaletteFromImage(url).done(function(){
-                        enableInteraction()
-                        
-                    })  
-                },
-                timeout: 2000 
-            });
+            //Get a random image from the samples folder
+            var rand = Math.floor(Math.random() * 50) + 1 ;
+            var url = "img/samples/" + rand + ".jpg"
+            
+            createPaletteFromImage(url).done(function(){
+                enableInteraction()
+            }) 
+
             return paletteWait.promise();
         }
 
