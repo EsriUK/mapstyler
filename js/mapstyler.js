@@ -9,7 +9,7 @@
         var paletteCollection = new Object; 
         paletteCollection.palettes = new Array; //where 0 is the latest and the rest are for the undo stack
         paletteCollection.firstLoad = true;
-        paletteCollection.history = 5; //number of palletes to store for the undo stack
+        paletteCollection.history = 10; //number of palletes to store for the undo stack
         paletteCollection.undoPosition = 1;      
 
         //Functions  -----------------------------------------------------------------------------------
