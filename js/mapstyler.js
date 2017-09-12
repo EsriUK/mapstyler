@@ -194,9 +194,9 @@
             } else {
                 var imagepath	= dataTransfer.getData('text/html');
                 var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '"'))[1].split('"')[0];
-				createPaletteFromImage(event.target.result).done(function(){
-                    enableInteraction()
-                })
+				createPaletteFromImage(imagesrc).done(function(){
+                            enableInteraction()
+                        })
             }
         }
 
