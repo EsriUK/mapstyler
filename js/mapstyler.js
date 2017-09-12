@@ -159,6 +159,8 @@
             preferredFormat: "hex",
             chooseText: "Apply",
             change: function(color) {
+                $("a#save").attr('class', 'btn')  
+                $('a#save').text('SAVE');
                 $(this).css("background",  color.toHexString());
                 duplicateLatestPalette();
                 var id = this.id.substring(7, 8);
