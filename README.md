@@ -1,17 +1,16 @@
 # mapstyler
 
 ## About
-mapstyler is an app to help you quickly style a vector tile layer using either an image or a curated colour palette from [ColourLovers](http://www.colourlovers.com/). It was built using Esri's [dark gray canvas vector tile layer](https://www.arcgis.com/home/item.html?id=5ad3948260a147a993ef4865e3fad476), version 4 of the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript), [Color Thief](https://github.com/lokesh/color-thief) and [RainbowVis-JS](https://github.com/anomal/RainbowVis-JS).
+mapstyler is an app to help you quickly style a vector tile layer using an image. It was built using Esri's [dark gray canvas vector tile layer](https://www.arcgis.com/home/item.html?id=5ad3948260a147a993ef4865e3fad476), version 4 of the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript), [Color Thief](https://github.com/lokesh/color-thief), [RainbowVis-JS](https://github.com/anomal/RainbowVis-JS) and [Spectrum](https://bgrins.github.io/spectrum/).
 
 Check out the app [here](http://esriuk.com/mapstyler).
 
-## Wishlist
-- Mobile friendliness
-- Modularisation (load in functionality via AMD modules)
-- Maintain state when switching between colour and image tabs
-- View your style history
-- User-created styles gallery
-- Colour tweaking on image tab
+## What's new in version 2.0?
+- New design
+- Modularised codebase
+- Mobile version allowing you to take a picture to use to style a basemap
+- Undo/redo stack
+- Colour tweaking for maps styled using images
 
 ## Issues
 
@@ -31,7 +30,7 @@ Find a bug or want to request a new feature? Please let us know by submitting an
 * run: npm install
 * run: grunt watch
 
-... now if you edit the .less files the Grunt Task Runner will watch for change and compile you nice new .css files
+... now if you edit the .less files the Grunt Task Runner will watch for change and compile you nice new .css files.
 
 ## Licensing
 
