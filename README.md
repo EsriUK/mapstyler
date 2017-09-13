@@ -8,7 +8,7 @@ Check out the app [here](http://esriuk.com/mapstyler).
 ## What's new in version 2.0?
 - New design
 - Modularised codebase
-- Mobile version allowing you to take a picture to use to style a basemap
+- Mobile version allowing you to take a picture for use to style the map
 - Undo/redo stack
 - Colour tweaking for maps styled using images
 
