@@ -1,0 +1,252 @@
+body{
+    pointer-events: none;
+}
+body,
+#viewDiv,
+#disable {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.modal-content {
+    background-color: #fefefe;
+    font-family: 'Montserrat', sans-serif;
+    margin: 12% auto;
+    padding: 40px;
+    max-width: 45%;
+	text-align: center;
+	position: relative;
+}
+.modal-content img {
+	max-width: 140px;
+	margin: 20px 0;
+}
+
+.modal-content p {
+	line-height: 1.6;
+	color: #303d4c;
+    font-size: 15px;
+}
+
+.modal-content p.footnote {
+	color: #8d99a7;
+	font-size: 13px;
+}
+
+h1 {
+    font-weight: 600;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 40px;
+}
+h2 {
+    margin: 0;
+    font-size: 16px;
+}
+p {
+    font-size: 14px;
+}
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 15px;
+}
+
+.close {
+	position: absolute;
+    top: 7px;
+    right: 15px;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 30px;
+	background: none;
+	border: none;
+	color: #bbb;
+	cursor: pointer;
+}
+
+.close:hover {
+}
+
+.go-button {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    color: #ffffff;
+    background: #ce42c2;
+    padding: 12px 32px;
+    border: solid #ce42c2 1px;
+    text-decoration: none;
+	cursor: pointer;
+}
+.go-button:hover {
+    background: #DD8BD2;
+    text-decoration: none;
+    border-color: #DD8BD2;
+}
+
+/*COLOUR PICKER*/
+.sp-container {
+    background-color: #f4f4f4;
+    border: solid 0px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+.sp-color, .sp-hue, .sp-clear {
+    border: solid 0px #666;
+}
+.sp-input {
+    font-size: 12px !important;
+    border: 1px solid #c4c4c4;
+    padding: 4px 5px;
+    margin: 0;
+    width: 100%;
+    background: transparent;
+    border-radius: 0px;
+    color: #222;
+}
+.sp-container button {
+    background-color: #f4f4f4;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    border: 0px;
+    border-bottom: 0px;
+    border-radius: 0px;
+    color: #303d4c;
+    font-size: 14px;
+    line-height: 1;
+    padding: 5px 4px;
+    text-align: center;
+    text-shadow: 0 1px 0 #eee;
+    vertical-align: middle;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.sp-container button:hover {
+    background-color: #f4f4f4;
+    background-image: none;
+    border: 0px;
+    cursor: pointer;
+    text-shadow: none;
+}
+.sp-cancel {
+    font-size: 9px;
+    color: #949494 !important;
+    margin: 0;
+    padding: 2px;
+    margin-right: 5px;
+    vertical-align: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+.sp-cancel:hover {
+    color: #949494 !important;
+    text-decoration: none;
+}
+.sp-slider {
+    border: 1px solid #000;
+    background: black;
+    height: 1px;
+}
+.sp-dragger {
+    border-radius: 6px;
+    height: 9px;
+    width: 9px;
+    border: 2px solid #444;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/*extra bits*/
+
+.card-content {
+    background-image: url(../img/board.png);
+    background-size: 200px;
+    background-repeat: repeat;
+}
+
+.swatch {
+    cursor: pointer;
+}
+
+/*tooltip stuff*/
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
