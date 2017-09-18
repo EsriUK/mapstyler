@@ -5,23 +5,12 @@ mapstyler is an app to help you quickly style a vector tile layer using an image
 
 Check out the app [here](http://esriuk.com/mapstyler).
 
-<<<<<<< HEAD
-## Wishlist
-- Mobile friendliness
-- Modularisation (load in functionality via AMD modules)
-- Maintain state when switching between colour and image tabs
-- View your style history
-- User-created styles gallery
-- Colour tweaking on image tab
-- Add hex code functionality to change the colours
-=======
 ## What's new in version 2.0?
 - New design
 - Modularised codebase
 - Mobile version allowing you to take a picture for use to style the map
 - Undo/redo stack
 - Colour tweaking for maps styled using images
->>>>>>> mapstyler-version-2.0
 
 ## Issues
 
