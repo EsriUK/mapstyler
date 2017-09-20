@@ -4,6 +4,7 @@
         "modules/Portal",
         "modules/Utils"
     ], function(MapController, Palette, Portal, Utils) {
+
         //Session Variables-----------------------------------------------------------------------------
         var mapController = new MapController.MapController("viewDiv");
         var paletteCollection = new Object; 
@@ -68,7 +69,7 @@
                 var latestPalette = getLatestPalette();
                 if (result == "error" || latestPalette.colours == null){
                     paletteCollection.palettes.shift();                    
-                    alert("Unsupported file")
+                    alert("You've probably tried to use an supported file type. However, if you are seeing this message on Safari, please note we have limited support for dragging images between browser tabs on Safari.")
                     paletteWait.resolve("error");
                 }
                 else{
@@ -194,11 +195,33 @@
                     reader.readAsDataURL(file);
                 });
             } else {
-                var imagepath	= dataTransfer.getData('text/html');
-                var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '"'))[1].split('"')[0];
-				createPaletteFromImage(imagesrc).done(function(){
-                            enableInteraction()
-                        })
+                //There is an issue with Safari's implementation of HTML5 drag and drop so we need to detect when Safari is being used and do things differently
+                var is_safari = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1 &&  navigator.userAgent.indexOf('Android') == -1;                
+                if (is_safari){
+                    //Safari does not offer us the text/html data type which causes us some issues...
+                    var imagepath	= dataTransfer.getData('text/plain');
+                    var url;
+                    //If image has been dragged and dropped from Google image results
+                    if (imagepath.includes("imgurl")){
+                        var decodedUrl = decodeURIComponent(imagepath);
+                        var urlSplit = decodedUrl.split("?")
+                        var urlParams = urlSplit[1].split("&")
+                        url = urlParams[0].split("=")[1];
+                    }
+                    else{
+                        url = imagepath;
+                    }
+                    createPaletteFromImage(url).done(function(){
+                        enableInteraction()
+                    })
+                }
+                else{
+                    var imagepath	= dataTransfer.getData('text/html');
+                    var imagesrc	= imagepath.match(new RegExp('src="' + '(.*)' + '"'))[1].split('"')[0];
+                    createPaletteFromImage(imagesrc).done(function(){
+                                enableInteraction()
+                            })
+                }
             }
         }
 

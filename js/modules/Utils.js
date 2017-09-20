@@ -14,6 +14,13 @@ define(["modules/color-thief.min", "modules/rainbowvis"], function() {
             reader.readAsDataURL(xhr.response);
         };
         xhr.open('GET', url);
+        xhr.onreadystatechange = function () {  
+            if (xhr.readyState === 4) {  
+                if (xhr.status != 200) { 
+                    callback("error");   
+                }  
+            }  
+        }; 
         xhr.responseType = 'blob';
         xhr.send();
     }

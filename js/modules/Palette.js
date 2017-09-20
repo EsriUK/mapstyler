@@ -24,11 +24,16 @@ define(["modules/Utils"], function(Utils) {
             });
         } else {
             Utils.imageToBase64(image, function(result) {
-                that.image = result;
-                Utils.imageToColours(result, 5).done(function(result) {
-                    that.colours = result;
-                    paletteWait.resolve();
-                });
+                if (result != "error"){
+                    that.image = result;
+                    Utils.imageToColours(result, 5).done(function(result) {
+                        that.colours = result;
+                        paletteWait.resolve("success");
+                    });
+                }
+                else{
+                    paletteWait.resolve("error")
+                }
             });
         }
         return paletteWait.promise();
